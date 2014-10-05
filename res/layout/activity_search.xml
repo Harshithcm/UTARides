@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!--
+         <LinearLayout
+        android:id="@+id/dateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+    </LinearLayout>
+    -->
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="101dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/buttonSearch"
+        android:textSize="20sp" />
+
+    <!--
+         <Button
+        android:id="@+id/buttonDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/buttonconnectDB"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+    -->
+
+    <EditText
+        android:id="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonSearch"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="81dp"
+        android:ems="10"
+        android:hint="@string/textTimeHint" />
+
+    <!--
+         <LinearLayout
+        android:id="@+id/timeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textTime"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+    </LinearLayout>
+    -->
+
+    <Button
+        android:id="@+id/buttonDate"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textDate"
+        android:layout_alignParentRight="true"
+        android:text="@string/buttonDate" />
+
+    <Button
+        android:id="@+id/buttonTime"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textTime"
+        android:layout_alignParentRight="true"
+        android:text="@string/buttonTime" />
+
+    <EditText
+        android:id="@+id/textDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonTime"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="62dp"
+        android:ems="10"
+        android:hint="@string/textDateHint"
+        android:inputType="date" />
+
+</RelativeLayout>

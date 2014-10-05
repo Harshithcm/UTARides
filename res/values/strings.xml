@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UTA RIDES</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- activity_welcome.xml -->
+    <string name="login">Log In</string>
+    <string name="signup">Sign Up</string>
+    <string name="slogan">We Make Booking Simple</string>
+    
+    <!-- activity_search.xml -->
+    <string name="activitySearch">Search for a Ride</string>
+    <string name="textDateAndTime">Select Date and Time</string>
+    <string name="buttonDate">Date</string>
+    <string name="buttonTime">Time</string>
+    <string name="textDateHint">Select Date</string>
+    <string name="textTimeHint">Select Time</string>
+    <string name="buttonSearch">Search Availability</string>
+    <string name="buttonconnectDB">Connect to DB</string>
+    
+    <!-- activity_db.xml -->
+    <string name="activityDB">DB Connect Check</string>
+    <string name="textDB">Found It!!!</string>
+    
+    <!-- activity_available.xml -->
+    <string name="actvitiyAvailable">Available Rides</string>
+    <string name="listAvailable">Car Owner</string>
+
+    <!-- activity_carowner_details.xml -->
+    <string name="activityCarOwnersDetails">Ride Details</string>
+    <string name="riderName">Name</string>
+    <string name="riderNumber">Phone Number</string>
+    <string name="riderFromTime">From Time</string>
+    <string name="riderToTime">To Time</string>
+
+    <!-- activity_launch.xml -->
+    <string name="activityLaunch">Ride. Giving or Taking ?</string>
+    <string name="launchStudent">Take Ride</string>
+    <string name="launchCarOwner">Give Ride</string>
+    
+    <!-- activity_add_user.xml -->
+    <string name="activityAddUser">Add a User</string>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>

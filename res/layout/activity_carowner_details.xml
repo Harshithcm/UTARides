@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/riderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="Rider Name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/riderNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/riderName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:autoLink="phone"
+        android:text="Phone Number"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+<!--     <TextView
+        android:id="@+id/riderFromTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/riderNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="From Time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/riderToTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/riderFromTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="To Time"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> -->
+
+</RelativeLayout>
