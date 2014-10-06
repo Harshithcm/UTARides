@@ -18,12 +18,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-public class SearchActivity extends Activity implements
-		OnClickListener {
+public class SearchActivity extends Activity implements OnClickListener {
 	Button buttonSearch, buttonDate, buttonTime;
 	EditText textDate, textTime;
 	Intent i;
 	Calendar calendar;
+	String selectedDate;
 	int mYear, mMonth, mDay, tHour, tMinute;
 	DatePickerDialog datePick;
 	TimePickerDialog timePick;
@@ -81,6 +81,9 @@ public class SearchActivity extends Activity implements
 								int monthOfYear, int dayOfMonth) {
 							textDate.setText(dayOfMonth + "-"
 									+ (monthOfYear + 1) + "-" + year);
+							selectedDate = year + "-" + (monthOfYear + 1)
+									+ "-" + dayOfMonth;
+
 						}
 					}, mYear, mMonth, mDay);
 
@@ -108,25 +111,28 @@ public class SearchActivity extends Activity implements
 			break;
 
 		case R.id.buttonSearch:
+			String dateSearch = functionDate();
+			String timeSearch = textTime.getText().toString();
+			System.out.println("before select " + dateSearch + " " + timeSearch);
 			i = new Intent(SearchActivity.this, LoadAvailableListActivity.class);
-			i.putExtra("dateSearch", functionDate());
-			i.putExtra("timeSearch", textTime.getText().toString());
+			i.putExtra("dateSearch", dateSearch);
+			i.putExtra("timeSearch", timeSearch);
 			startActivity(i);
 			break;
 		}
 	}
 
 	public String functionDate() {
-		Date dateData = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-		try {
-			dateData = formatter.parse(formatter.format(textDate.getText()
-					.toString()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		calendar = Calendar.getInstance();
-		calendar.setTime(dateData);
-		return dateData.toString();
+//		Date dateData = new Date();
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+//		try {
+//			dateData = simpleDateFormat.format(selectedDate);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+//		System.out.println("dateData - " + dateData);
+		System.out.println("selected date " + selectedDate);
+		return selectedDate;
 	}
 }
