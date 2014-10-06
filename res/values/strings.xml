@@ -20,9 +20,16 @@
     <string name="buttonSearch">Search Availability</string>
     <string name="buttonconnectDB">Connect to DB</string>
     
+    <!-- activity_median.xml -->
+    <string name="activityMedian">Available Rides</string>
+    <string name="textMedian">Name</string>
+    
     <!-- activity_db.xml -->
     <string name="activityDB">DB Connect Check</string>
     <string name="textDB">Found It!!!</string>
+    
+    <!-- activity_splash.xml -->
+    <string name="splashText">UTA Rides</string>
     
     <!-- activity_available.xml -->
     <string name="actvitiyAvailable">Available Rides</string>
@@ -36,9 +43,9 @@
     <string name="riderToTime">To Time</string>
 
     <!-- activity_launch.xml -->
-    <string name="activityLaunch">Ride. Giving or Taking ?</string>
-    <string name="launchStudent">Take Ride</string>
-    <string name="launchCarOwner">Give Ride</string>
+    <string name="activityLaunch">Select your Preference</string>
+    <string name="launchStudent">Book a Ride</string>
+    <string name="launchCarOwner">Provide a Ride</string>
     
     <!-- activity_add_user.xml -->
     <string name="activityAddUser">Add a User</string>

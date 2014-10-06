@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/*WelcomeActivity - The Users can Log In and Sign Up*/
 public class WelcomeActivity extends Activity implements OnClickListener {
 	Intent i;
 
@@ -30,6 +31,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 
+		/*Retrieves the LogIn and SignUp button*/
 		Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
 		Button buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
 

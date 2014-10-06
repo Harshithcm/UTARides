@@ -25,9 +25,6 @@ public class TestDisplays {
 		} finally{
 			System.out.println("ah crap!");
 		}
-		/*if (connection == null){
-			System.out.println("Failed to make connection!");
-		}*/
 	}
 	
 	public static void Display(String args){

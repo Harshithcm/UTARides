@@ -1270,43 +1270,50 @@ containing a value of this type.
         public static final int action_settings=0x7f0a000f;
         /**  activity_add_user.xml 
          */
-        public static final int activityAddUser=0x7f0a0027;
+        public static final int activityAddUser=0x7f0a002a;
         /**  activity_carowner_details.xml 
          */
-        public static final int activityCarOwnersDetails=0x7f0a001f;
+        public static final int activityCarOwnersDetails=0x7f0a0022;
         /**  activity_db.xml 
          */
-        public static final int activityDB=0x7f0a001b;
+        public static final int activityDB=0x7f0a001d;
         /**  activity_launch.xml 
          */
-        public static final int activityLaunch=0x7f0a0024;
+        public static final int activityLaunch=0x7f0a0027;
+        /**  activity_median.xml 
+         */
+        public static final int activityMedian=0x7f0a001b;
         /**  activity_search.xml 
          */
         public static final int activitySearch=0x7f0a0013;
         /**  activity_available.xml 
          */
-        public static final int actvitiyAvailable=0x7f0a001d;
+        public static final int actvitiyAvailable=0x7f0a0020;
         public static final int app_name=0x7f0a000d;
         public static final int buttonDate=0x7f0a0015;
         public static final int buttonSearch=0x7f0a0019;
         public static final int buttonTime=0x7f0a0016;
         public static final int buttonconnectDB=0x7f0a001a;
         public static final int hello_world=0x7f0a000e;
-        public static final int launchCarOwner=0x7f0a0026;
-        public static final int launchStudent=0x7f0a0025;
-        public static final int listAvailable=0x7f0a001e;
+        public static final int launchCarOwner=0x7f0a0029;
+        public static final int launchStudent=0x7f0a0028;
+        public static final int listAvailable=0x7f0a0021;
         /**  activity_welcome.xml 
          */
         public static final int login=0x7f0a0010;
-        public static final int riderFromTime=0x7f0a0022;
-        public static final int riderName=0x7f0a0020;
-        public static final int riderNumber=0x7f0a0021;
-        public static final int riderToTime=0x7f0a0023;
+        public static final int riderFromTime=0x7f0a0025;
+        public static final int riderName=0x7f0a0023;
+        public static final int riderNumber=0x7f0a0024;
+        public static final int riderToTime=0x7f0a0026;
         public static final int signup=0x7f0a0011;
         public static final int slogan=0x7f0a0012;
-        public static final int textDB=0x7f0a001c;
+        /**  activity_splash.xml 
+         */
+        public static final int splashText=0x7f0a001f;
+        public static final int textDB=0x7f0a001e;
         public static final int textDateAndTime=0x7f0a0014;
         public static final int textDateHint=0x7f0a0017;
+        public static final int textMedian=0x7f0a001c;
         public static final int textTimeHint=0x7f0a0018;
     }
     public static final class style {
