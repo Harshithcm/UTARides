@@ -1,6 +1,6 @@
 package com.se.uta_rides;
 
-import com.parse.ParseObject;
+//import com.parse.ParseObject;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -9,7 +9,7 @@ public class CarOwnersDetailsActivity extends Activity {
 	private String carOwnerName, carOwnerNumber, carOwnerFromTime, carOwnerToTime;
 	private TextView riderName, riderNumber, riderFromTime, riderToTime;
 
-	ParseObject obj;
+	//ParseObject obj;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
