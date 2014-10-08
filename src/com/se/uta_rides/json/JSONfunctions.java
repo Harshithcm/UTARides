@@ -45,7 +45,6 @@ public class JSONfunctions {
 			httpClient = new DefaultHttpClient();
 			httppost = new HttpPost(
 					"http://omega.uta.edu/~sxk7162/db_mysql_o.php");
-			// httppost = new HttpPost("http://192.168.0.13/db_mysql.php");
 			httppost.setEntity(new UrlEncodedFormEntity(newValuePairs));
 			response = httpClient.execute(httppost);
 			entity = response.getEntity();

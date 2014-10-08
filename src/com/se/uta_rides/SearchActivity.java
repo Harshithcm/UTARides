@@ -1,8 +1,6 @@
 package com.se.uta_rides;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -18,12 +16,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+/*SearchActivity - Allows users to Search for a list of Car Owner, within a specified time and date*/
 public class SearchActivity extends Activity implements OnClickListener {
 	Button buttonSearch, buttonDate, buttonTime;
 	EditText textDate, textTime;
 	Intent i;
 	Calendar calendar;
-	String selectedDate;
+	String selectedDate, selectedTime;
 	int mYear, mMonth, mDay, tHour, tMinute;
 	DatePickerDialog datePick;
 	TimePickerDialog timePick;
@@ -33,10 +32,12 @@ public class SearchActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 
+		/* Retrieves the Date, Time and Search button */
 		buttonDate = (Button) findViewById(R.id.buttonDate);
 		buttonTime = (Button) findViewById(R.id.buttonTime);
 		buttonSearch = (Button) findViewById(R.id.buttonSearch);
 
+		/* Retrieves the Date and Time text views */
 		textDate = (EditText) findViewById(R.id.textDate);
 		textTime = (EditText) findViewById(R.id.textTime);
 
@@ -73,6 +74,7 @@ public class SearchActivity extends Activity implements OnClickListener {
 			mMonth = calendar.get(Calendar.MONTH);
 			mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
+			/*Lets the user pick the date of the ride*/ 
 			datePick = new DatePickerDialog(this,
 					new DatePickerDialog.OnDateSetListener() {
 
@@ -81,8 +83,8 @@ public class SearchActivity extends Activity implements OnClickListener {
 								int monthOfYear, int dayOfMonth) {
 							textDate.setText(dayOfMonth + "-"
 									+ (monthOfYear + 1) + "-" + year);
-							selectedDate = year + "-" + (monthOfYear + 1)
-									+ "-" + dayOfMonth;
+							selectedDate = year + "-" + (monthOfYear + 1) + "-"
+									+ dayOfMonth;
 
 						}
 					}, mYear, mMonth, mDay);
@@ -96,6 +98,7 @@ public class SearchActivity extends Activity implements OnClickListener {
 			tHour = calendar.get(Calendar.HOUR_OF_DAY);
 			tMinute = calendar.get(Calendar.MINUTE);
 
+			/*Lets the user pick the time of the ride*/
 			timePick = new TimePickerDialog(this,
 					new TimePickerDialog.OnTimeSetListener() {
 
@@ -103,6 +106,8 @@ public class SearchActivity extends Activity implements OnClickListener {
 						public void onTimeSet(TimePicker view, int hourOfDay,
 								int minute) {
 							textTime.setText(hourOfDay + ":" + minute);
+
+							selectedTime = hourOfDay + ":" + minute;
 						}
 					}, tHour, tMinute, false);
 
@@ -111,9 +116,10 @@ public class SearchActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.buttonSearch:
-			String dateSearch = functionDate();
-			String timeSearch = textTime.getText().toString();
-			System.out.println("before select " + dateSearch + " " + timeSearch);
+			String dateSearch = selectedDate;
+			String timeSearch = selectedTime;
+			System.out
+					.println("before select " + dateSearch + " " + timeSearch);
 			i = new Intent(SearchActivity.this, LoadAvailableListActivity.class);
 			i.putExtra("dateSearch", dateSearch);
 			i.putExtra("timeSearch", timeSearch);
@@ -123,15 +129,6 @@ public class SearchActivity extends Activity implements OnClickListener {
 	}
 
 	public String functionDate() {
-//		Date dateData = new Date();
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-//		try {
-//			dateData = simpleDateFormat.format(selectedDate);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-
-//		System.out.println("dateData - " + dateData);
 		System.out.println("selected date " + selectedDate);
 		return selectedDate;
 	}

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/*LaunchActivity - Allows user to select "Booking a ride" and "Providing a Ride"*/
 public class LaunchActivity extends Activity implements OnClickListener {
 
 	Button student, carOwner;
@@ -16,6 +17,8 @@ public class LaunchActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launch);
+		
+		/*Retrieves Student and Car Owner buttons*/
 		student = (Button) findViewById(R.id.launchStudent);
 		carOwner = (Button) findViewById(R.id.launchCarOwner);
 		student.setOnClickListener(this);
@@ -32,7 +35,7 @@ public class LaunchActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.launchCarOwner:
-			startActivity(new Intent("com.se.uta_rides.ADDUSERACTIVITY"));
+			startActivity(new Intent("com.se.uta_rides.CAROWNERSETAVAILABLEACTIVITY"));
 		}
 
 	}
