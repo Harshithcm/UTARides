@@ -1,9 +1,9 @@
 package com.se.uta_rides;
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 //import com.parse.ParseObject;
 =======
->>>>>>> 3c11cac54c60e2d7d3945a520d558f6d9291fece
+>>>>>>> 3c11cac54c60e2d7d3945a520d558f6d9291fece*/
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -14,11 +14,11 @@ public class CarOwnersDetailsActivity extends Activity {
 	private String carOwnerName, carOwnerNumber, carOwnerFromTime, carOwnerToTime;
 	private TextView riderName, riderNumber, riderFromTime, riderToTime;
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 	//ParseObject obj;
 
 =======
->>>>>>> 3c11cac54c60e2d7d3945a520d558f6d9291fece
+>>>>>>> 3c11cac54c60e2d7d3945a520d558f6d9291fece*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
