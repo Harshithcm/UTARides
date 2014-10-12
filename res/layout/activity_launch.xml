@@ -3,23 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@drawable/blue_bg_grad"
     android:orientation="vertical" >
 
     <Button
         android:id="@+id/launchStudent"
+        style="@style/NiceButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="231dp"
         android:text="@string/launchStudent" />
 
     <Button
         android:id="@+id/launchCarOwner"
+        style="@style/NiceButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/launchStudent"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/launchStudent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="106dp"
         android:text="@string/launchCarOwner" />
 
 </RelativeLayout>

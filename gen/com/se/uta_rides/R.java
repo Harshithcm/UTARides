@@ -1080,8 +1080,16 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
-        public static final int uta_rides=0x7f020058;
+        public static final int blue_bg_grad=0x7f020057;
+        public static final int buttonshape=0x7f020058;
+        public static final int gradient_background=0x7f020059;
+        public static final int ic_launcher=0x7f02005a;
+        public static final int nice_button_enabled=0x7f02005b;
+        public static final int nice_button_focused=0x7f02005c;
+        public static final int nice_button_pressed=0x7f02005d;
+        public static final int round_corner_button=0x7f02005e;
+        public static final int states_nice_button=0x7f02005f;
+        public static final int uta_rides=0x7f020060;
     }
     public static final class id {
         public static final int TextView01=0x7f050052;
@@ -1101,11 +1109,11 @@ containing a value of this type.
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
         public static final int button1=0x7f050048;
-        public static final int buttonDate=0x7f05004c;
+        public static final int buttonDate=0x7f05004e;
         public static final int buttonLogIn=0x7f050054;
-        public static final int buttonSearch=0x7f05004a;
+        public static final int buttonSearch=0x7f05004b;
         public static final int buttonSignUp=0x7f050055;
-        public static final int buttonTime=0x7f05004e;
+        public static final int buttonTime=0x7f05004c;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int default_activity_button=0x7f050028;
@@ -1161,7 +1169,7 @@ containing a value of this type.
         public static final int textDate=0x7f05004d;
         public static final int textMedian=0x7f050049;
         public static final int textSlogan=0x7f050056;
-        public static final int textTime=0x7f05004b;
+        public static final int textTime=0x7f05004a;
         public static final int textView1=0x7f05003c;
         public static final int textView2=0x7f050043;
         public static final int textView3=0x7f050045;
@@ -1342,11 +1350,13 @@ containing a value of this type.
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -1365,6 +1375,7 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0b008c;
+        public static final int NiceButton=0x7f0b008d;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0b0063;

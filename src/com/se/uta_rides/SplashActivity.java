@@ -23,7 +23,7 @@ public class SplashActivity extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
-					Intent i = new Intent("com.se.uta_rides.LAUNCHACTIVITY");
+					Intent i = new Intent("com.se.uta_rides.LOGINACTIVITY");
 					startActivity(i);
 				}
 			}
