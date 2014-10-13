@@ -34,6 +34,16 @@
     <!-- activity_available.xml -->
     <string name="actvitiyAvailable">Available Rides</string>
     <string name="listAvailable">Car Owner</string>
+    <string name = "Login"> Login Page</string>
+    <string name = "password"> Password</string>
+    <string name = "username"> User Name</string>
+    <string name="welcome">WELCOME !!</string>
+    <string name="sign">signup</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="Name">Name</string>
+    <string name="register">Register</string>
+    <color name="blue">#3366CC</color>
 
     <!-- activity_carowner_details.xml -->
     <string name="activityCarOwnersDetails">Ride Details</string>

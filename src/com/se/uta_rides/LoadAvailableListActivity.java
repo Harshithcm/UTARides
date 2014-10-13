@@ -88,6 +88,7 @@ public class LoadAvailableListActivity extends Activity {
 			httppost = new HttpPost(
 					"http://omega.uta.edu/~sxk7162/db_mysql_o.php?" + params);
 			response = httpClient.execute(httppost);
+			System.out.println(response);
 			entity = response.getEntity();
 			System.out.println("Entity Object" + entity.toString());
 			if (entity != null) {
@@ -141,7 +142,7 @@ public class LoadAvailableListActivity extends Activity {
 				map.put(LAST_NAME, lastName);
 				map.put(PHONE_NUMBER, phoneNumber);
 				arrayList.add(map);
-
+			}
 				/*Retrieve a List View to set the list of available Rides*/
 				resultView = (ListView) findViewById(R.id.listAvailable);
 				ListAdapter adapter = new SimpleAdapter(
@@ -149,7 +150,7 @@ public class LoadAvailableListActivity extends Activity {
 						R.layout.activity_median, new String[] { FIRST_NAME },
 						new int[] { R.id.textMedian });
 				resultView.setAdapter(adapter);
-			}
+			
 		} catch (JSONException e) {
 			Log.e("Error", e.getMessage());
 			e.printStackTrace();

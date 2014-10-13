@@ -118,8 +118,7 @@ public class SearchActivity extends Activity implements OnClickListener {
 		case R.id.buttonSearch:
 			String dateSearch = selectedDate;
 			String timeSearch = selectedTime;
-			System.out
-					.println("before select " + dateSearch + " " + timeSearch);
+			System.out.println("before select " + dateSearch + " " + timeSearch);
 			i = new Intent(SearchActivity.this, LoadAvailableListActivity.class);
 			i.putExtra("dateSearch", dateSearch);
 			i.putExtra("timeSearch", timeSearch);
