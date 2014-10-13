@@ -87,6 +87,7 @@ public class LoadAvailableListActivity extends Activity {
 			httpClient = new DefaultHttpClient();
 			httppost = new HttpPost(
 					"http://omega.uta.edu/~sxk7162/db_mysql_o.php?" + params);
+			//httppost = new HttpPost("http://omega.uta.edu/~sxk7162/db_mysql_o.php?");
 			response = httpClient.execute(httppost);
 			System.out.println(response);
 			entity = response.getEntity();
