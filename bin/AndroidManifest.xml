@@ -84,7 +84,7 @@
         </activity>
         <activity
             android:name=".CarOwnerSetAvailbleActivity"
-            android:label="@string/activityAddUser" >
+            android:label="@string/activityCarOwnerSetAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSETAVAILABLEACTIVITY" />
 
