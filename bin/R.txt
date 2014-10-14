@@ -237,18 +237,8 @@ int drawable abc_textfield_searchview_holo_dark 0x7f020053
 int drawable abc_textfield_searchview_holo_light 0x7f020054
 int drawable abc_textfield_searchview_right_holo_dark 0x7f020055
 int drawable abc_textfield_searchview_right_holo_light 0x7f020056
-<<<<<<< Updated upstream
 int drawable ic_launcher 0x7f020057
 int drawable uta_rides 0x7f020058
-=======
-int drawable blue_bg_grad 0x7f020057
-int drawable ic_launcher 0x7f020058
-int drawable nice_button_enabled 0x7f020059
-int drawable nice_button_focused 0x7f02005a
-int drawable nice_button_pressed 0x7f02005b
-int drawable states_nice_button 0x7f02005c
-int drawable uta_rides 0x7f02005d
->>>>>>> Stashed changes
 int id TextView01 0x7f050052
 int id action_bar 0x7f05001c
 int id action_bar_activity_content 0x7f050015
@@ -268,15 +258,9 @@ int id beginning 0x7f050011
 int id button1 0x7f050048
 int id buttonDate 0x7f05004c
 int id buttonLogIn 0x7f050054
-<<<<<<< Updated upstream
 int id buttonSearch 0x7f05004a
 int id buttonSignUp 0x7f050055
 int id buttonTime 0x7f05004e
-=======
-int id buttonSearch 0x7f05004e
-int id buttonSignUp 0x7f050055
-int id buttonTime 0x7f05004a
->>>>>>> Stashed changes
 int id checkbox 0x7f05002d
 int id collapseActionView 0x7f05000d
 int id default_activity_button 0x7f050028

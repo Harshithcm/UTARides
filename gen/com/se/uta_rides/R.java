@@ -1080,18 +1080,8 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-<<<<<<< Updated upstream
         public static final int ic_launcher=0x7f020057;
         public static final int uta_rides=0x7f020058;
-=======
-        public static final int blue_bg_grad=0x7f020057;
-        public static final int ic_launcher=0x7f020058;
-        public static final int nice_button_enabled=0x7f020059;
-        public static final int nice_button_focused=0x7f02005a;
-        public static final int nice_button_pressed=0x7f02005b;
-        public static final int states_nice_button=0x7f02005c;
-        public static final int uta_rides=0x7f02005d;
->>>>>>> Stashed changes
     }
     public static final class id {
         public static final int TextView01=0x7f050052;
@@ -1113,15 +1103,9 @@ containing a value of this type.
         public static final int button1=0x7f050048;
         public static final int buttonDate=0x7f05004c;
         public static final int buttonLogIn=0x7f050054;
-<<<<<<< Updated upstream
         public static final int buttonSearch=0x7f05004a;
         public static final int buttonSignUp=0x7f050055;
         public static final int buttonTime=0x7f05004e;
-=======
-        public static final int buttonSearch=0x7f05004e;
-        public static final int buttonSignUp=0x7f050055;
-        public static final int buttonTime=0x7f05004a;
->>>>>>> Stashed changes
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int default_activity_button=0x7f050028;
