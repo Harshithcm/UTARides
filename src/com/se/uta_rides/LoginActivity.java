@@ -61,6 +61,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 	TextView txt_Error;
 	InputStream res = null;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

@@ -18,25 +18,19 @@
          <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> 
-        
-         <activity android:name=".SignupActivity" >
-            <intent-filter>
-                <action android:name="com.se.uta_rides.SIGNUPACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
-         
-         
-         
+        
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LOGINACTIVITY" />
-
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SignupActivity" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.SIGNUPACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -45,7 +39,6 @@
             android:label="@string/activityLaunch" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LAUNCHACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -54,7 +47,6 @@
             android:label="@string/activitySearch" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SEARCHACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -63,7 +55,6 @@
             android:label="@string/actvitiyAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LOADAVAILABLELISTACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -72,7 +63,6 @@
             android:label="@string/activityDB" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CONNECTDBACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -81,7 +71,6 @@
             android:label="@string/activityCarOwnersDetails" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSDETAILSACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -90,7 +79,6 @@
             android:label="@string/activityAddUser" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSETAVAILABLEACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
