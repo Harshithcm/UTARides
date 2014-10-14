@@ -25,13 +25,13 @@ public class CarOwnerAddActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_car_owner);
+		setContentView(R.layout.activity_carowner_set_available);
 
-		spinner1 = (Spinner) findViewById(R.id.spinner1);
+		spinner1 = (Spinner) findViewById(R.id.dayDropDownList);
 		System.out.println(1);
-		spinner2 = (Spinner) findViewById(R.id.spinner2);
+		spinner2 = (Spinner) findViewById(R.id.favSpotDropDownList);
 		System.out.println(2);
-		btnSubmit = (Button) findViewById(R.id.btnSubmit);
+		btnSubmit = (Button) findViewById(R.id.buttonSave);
 		System.out.println(3);
 		buttonStartTime = (Button) findViewById(R.id.buttonStartTime);
 		System.out.println(3.5);
@@ -60,7 +60,7 @@ public class CarOwnerAddActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btnSubmit:
+		case R.id.buttonSave:
 			Toast.makeText(
 					CarOwnerAddActivity.this,
 					"OnClickListener : " + "\nSpinner 1 : "
