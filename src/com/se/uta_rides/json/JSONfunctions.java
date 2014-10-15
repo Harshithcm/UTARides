@@ -24,16 +24,16 @@ import java.util.List;
 import android.util.Log;
 
 public class JSONfunctions {
-	static List<NameValuePair> newValuePairs;
-	static HttpClient httpClient;
-	static HttpPost httppost;
-	static HttpResponse response;
-	static HttpEntity entity;
-	static InputStream isr;
-	static String result = " ";
-	static JSONArray jArray;
+	List<NameValuePair> newValuePairs;
+	HttpClient httpClient;
+	HttpPost httppost;
+    HttpResponse response;
+    HttpEntity entity;
+	InputStream isr;
+	String result = " ";
+	JSONArray jArray;
 
-	public static JSONArray getJSONfromURL(String dateSearch, String timeSearch) {
+	public JSONArray getJSONfromURL(String dateSearch, String timeSearch) {
 
 		// Download JSON Data from server
 		try {

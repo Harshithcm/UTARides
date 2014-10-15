@@ -38,9 +38,9 @@ public class LoadAvailableListActivity extends Activity {
 	ProgressDialog mProgressDialog;
 	ArrayList<HashMap<String, String>> arrayList;
 	ListView resultView;
-	String dateSearch, timeSearch, result;
+	String dateSearch, timeSearch, result, locationSearch;
 	String firstName, lastName, phoneNumber;
-	private static final String FIRST_NAME = "co_fname";
+	private static final String NAME = "u_name";
 	private static final String LAST_NAME = "co_lname";
 	private static final String PHONE_NUMBER = "co_contact";	
 	List<NameValuePair> newValuePairs;
@@ -61,7 +61,7 @@ public class LoadAvailableListActivity extends Activity {
 		/* Retrieves the Date and Time values sent from Search Activity */
 		dateSearch = getIntent().getStringExtra("dateSearch");
 		timeSearch = getIntent().getStringExtra("timeSearch");
-
+		locationSearch = getIntent().getStringExtra("locationSearch");
 		arrayList = new ArrayList<HashMap<String, String>>();
 
 		try {
@@ -73,13 +73,13 @@ public class LoadAvailableListActivity extends Activity {
 
 			/*Create a query parameters to be sent to web services*/
 			String params = "day_id='" + dateSearch + "'&&time='" + timeSearch
-					+ "'";
-			String fullUrl = "http://omega.uta.edu/~sxk7162/db_mysql_o.php?"
+					+ "'&&loc='"+locationSearch+"'";
+			String fullUrl = "http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
 					+ params;
 			System.out.println("fullurl - " + fullUrl);
 			httpClient = new DefaultHttpClient();
 			httppost = new HttpPost(
-					"http://omega.uta.edu/~sxk7162/db_mysql_o.php?" + params);
+					"http://omega.uta.edu/~sxk7162/get_carowner_details.php?" + params);
 			response = httpClient.execute(httppost);
 			System.out.println(response);
 			entity = response.getEntity();
@@ -125,22 +125,22 @@ public class LoadAvailableListActivity extends Activity {
 		try {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				firstName = jsonObject.getString(FIRST_NAME);
-				lastName = jsonObject.getString(LAST_NAME);
-				phoneNumber = jsonObject.getString(PHONE_NUMBER);
+				firstName = jsonObject.getString(NAME);
+				//lastName = jsonObject.getString(LAST_NAME);
+				//phoneNumber = jsonObject.getString(PHONE_NUMBER);
 
 				HashMap<String, String> map = new HashMap<String, String>();
 
-				map.put(FIRST_NAME, firstName);
-				map.put(LAST_NAME, lastName);
-				map.put(PHONE_NUMBER, phoneNumber);
+				map.put(NAME, firstName);
+				//map.put(LAST_NAME, lastName);
+				//map.put(PHONE_NUMBER, phoneNumber);
 				arrayList.add(map);
 			}
 				/*Retrieve a List View to set the list of available Rides*/
 				resultView = (ListView) findViewById(R.id.listAvailable);
 				ListAdapter adapter = new SimpleAdapter(
 						LoadAvailableListActivity.this, arrayList,
-						R.layout.activity_median, new String[] { FIRST_NAME },
+						R.layout.activity_median, new String[] { NAME },
 						new int[] { R.id.textMedian });
 				resultView.setAdapter(adapter);
 			
