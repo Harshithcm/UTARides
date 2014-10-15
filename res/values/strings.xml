@@ -62,5 +62,15 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    
+    <string-array name="favSpotDropDownList">
+        <item>Walmart</item>
+        <item>India Bazaar</item>
+        <item>Bombay Bazaar</item>
+        <item>Patel Shop</item>
+        <item>Kroger</item>
+        <item>Target</item>
+        <item>China Town</item>
+    </string-array>
 
 </resources>

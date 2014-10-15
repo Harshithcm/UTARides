@@ -6,6 +6,16 @@
     android:orientation="vertical"
     android:paddingRight="5dp" >
 
+    <Spinner
+        android:id="@+id/favSpotDropDownList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
     <Button
         android:id="@+id/buttonTime"
         style="@style/NiceButton"
@@ -29,17 +39,6 @@
         android:text="@string/buttonDate"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
-
-    <Button
-        android:id="@+id/buttonSearch"
-        style="@style/NiceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="101dp"
-        android:text="@string/buttonSearch"
-        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/textDate"
@@ -65,5 +64,16 @@
         android:layout_marginBottom="82dp"
         android:ems="8"
         android:hint="@string/textTimeHint" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        style="@style/NiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:text="@string/buttonSearch"
+        android:textSize="20sp" />
 
 </RelativeLayout>
