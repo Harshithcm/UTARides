@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
     <Spinner
         android:id="@+id/favSpotDropDownList"
@@ -18,7 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/dayDropDownList"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
     <EditText
         android:id="@+id/textStartTime"
@@ -27,6 +31,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/favSpotDropDownList"
         android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
         android:ems="10"
         android:inputType="time" >
     </EditText>
@@ -38,6 +43,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textStartTime"
         android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
         android:ems="10"
         android:inputType="time" />
 
@@ -48,15 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textEndTime"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
-
-    <Button
-        android:id="@+id/buttonEndTime"
-        style="@style/NiceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textEndTime"
-        android:layout_alignLeft="@+id/buttonStartTime" />
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/buttonSave" />
 
     <Button
         android:id="@+id/buttonStartTime"
@@ -64,7 +64,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textStartTime"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp" />
+        android:layout_alignRight="@+id/favSpotDropDownList"
+        android:text="@string/buttonStartTime" />
+
+    <Button
+        android:id="@+id/buttonEndTime"
+        style="@style/NiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textEndTime"
+        android:layout_alignRight="@+id/buttonStartTime"
+        android:text="@string/buttonEndTime" />
 
 </RelativeLayout>

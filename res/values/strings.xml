@@ -6,9 +6,35 @@
     <string name="action_settings">Settings</string>
     
     <!-- activity_welcome.xml -->
-    <string name="login">Log In</string>
-    <string name="signup">Sign Up</string>
+    <string name="buttonLogIn">Log In</string>
+    <string name="buttonSignUp">Sign Up</string>
     <string name="slogan">We Make Booking Simple</string>
+    
+    <!-- activity_carowner_set_available.xml -->
+    <string name="activityCarOwnerSetAvailable">Please Set Your Preference</string>
+    <string name="textStartTime">Choose Start Time</string>
+    <string name="textEndTime">Choose End Time</string>
+    <string name="buttonStartTime">Start</string>
+    <string name="buttonEndTime">End</string>
+    <string name="buttonSave">Save</string>
+    <string-array name="dayDropDownList">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string-array name="favSpotDropDownList">
+        <item>Walmart</item>
+        <item>India Bazaar</item>
+        <item>Bombay Bazaar</item>
+        <item>Patel Shop</item>
+        <item>Kroger</item>
+        <item>Target</item>
+        <item>China Town</item>
+    </string-array>
     
     <!-- activity_search.xml -->
     <string name="activitySearch">Search for a Ride</string>
@@ -34,9 +60,9 @@
     <!-- activity_available.xml -->
     <string name="actvitiyAvailable">Available Rides</string>
     <string name="listAvailable">Car Owner</string>
-    <string name = "Login"> Login Page</string>
-    <string name = "password"> Password</string>
-    <string name = "username"> User Name</string>
+    <string name="Login"> Login Page</string>
+    <string name="password"> Password</string>
+    <string name="username"> User Name</string>
     <string name="welcome">WELCOME !!</string>
     <string name="sign">signup</string>
     <string name="email">Email</string>

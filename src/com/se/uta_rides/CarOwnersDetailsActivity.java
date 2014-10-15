@@ -27,13 +27,19 @@ public class CarOwnersDetailsActivity extends Activity {
 		/*Retrieves Name and Number text view*/
 		riderName = (TextView) findViewById(R.id.riderName);
 		riderNumber = (TextView) findViewById(R.id.riderNumber);
+		riderFromTime = (TextView) findViewById(R.id.riderFromTime);
+		riderToTime = (TextView) findViewById(R.id.riderToTime);
 		
 		/*Retrieves Name and Number from Search Activity*/
 		carOwnerName = getIntent().getStringExtra("carOwnerName");
 		carOwnerNumber = getIntent().getStringExtra("carOwnerNumber");
+		carOwnerFromTime = getIntent().getStringExtra("carOwnerFromTime");
+		carOwnerToTime = getIntent().getStringExtra("carOwnerToTime");
 		
 		/*Set the Name and Number*/
 		riderName.setText(carOwnerName);
 		riderNumber.setText(carOwnerNumber);
+		riderFromTime.setText(carOwnerFromTime);
+		riderToTime.setText(carOwnerToTime);
 	}
 }

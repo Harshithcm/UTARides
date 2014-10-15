@@ -4,11 +4,31 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Calendar;
+
+import org.apache.http.HttpException;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.HttpHostConnectException;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import android.app.Activity;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,6 +43,7 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 	private EditText textStartTime, textEndTime;
 	Calendar calendar;
 	String selectedDate, selectedTime;
+	String selectedStartTime, selectedEndTime;
 	int mYear, mMonth, mDay, tHour, tMinute;
 	TimePickerDialog timePick;
 
@@ -55,6 +76,22 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 
 		dayDropDownList.setOnItemSelectedListener(this);
 		System.out.println(8);
+
+		ArrayAdapter<CharSequence> dayDropDownListAdapter = ArrayAdapter
+				.createFromResource(this, R.array.dayDropDownList,
+						android.R.layout.simple_spinner_item);
+		dayDropDownListAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dayDropDownList.setAdapter(dayDropDownListAdapter);
+		dayDropDownList.setOnItemSelectedListener(this);
+		System.out.println(8);
+
+		ArrayAdapter<CharSequence> favSpotDropDownListAdapter = ArrayAdapter
+				.createFromResource(this, R.array.favSpotDropDownList,
+						android.R.layout.simple_spinner_item);
+		favSpotDropDownListAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		favSpotDropDownList.setAdapter(favSpotDropDownListAdapter);
 		favSpotDropDownList.setOnItemSelectedListener(this);
 		System.out.println(9);
 	}
@@ -65,13 +102,24 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		case R.id.buttonSave:
 			Toast.makeText(
 					CarOwnerSetAvailbleActivity.this,
-					"OnClickListener : "
-							+ "\nSpinner 1 : "
+					"You selected : "
+							+ "\n"
+							+ "Day : "
 							+ String.valueOf(dayDropDownList.getSelectedItem())
-							+ "\nSpinner 2 : "
+							+ "\n"
+							+ "Location : "
 							+ String.valueOf(favSpotDropDownList
 									.getSelectedItem()), Toast.LENGTH_SHORT)
 					.show();
+
+			SharedPreferences userDetails = getSharedPreferences("MyData",
+					Context.MODE_PRIVATE);
+			String userName = userDetails.getString("name", "null");
+
+			new SendData().execute(userName,
+					String.valueOf(dayDropDownList.getSelectedItem()),
+					String.valueOf(favSpotDropDownList.getSelectedItem()),
+					selectedStartTime, selectedEndTime);
 
 			break;
 
@@ -90,6 +138,8 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 							System.out.println("... " + hourOfDay);
 							System.out.println(".... " + minute);
 							textStartTime.setText(hourOfDay + ":" + minute);
+							
+							selectedStartTime = hourOfDay + ":" + minute;
 						}
 					}, tHour, tMinute, false);
 
@@ -112,6 +162,8 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 							System.out.println("... " + hourOfDay);
 							System.out.println(".... " + minute);
 							textEndTime.setText(hourOfDay + ":" + minute);
+
+							selectedEndTime = hourOfDay + ":" + minute;
 						}
 					}, tHour, tMinute, false);
 
@@ -124,16 +176,62 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
-		Toast.makeText(
-				parent.getContext(),
-				"OnItemSelectedListener : "
-						+ parent.getItemAtPosition(position).toString(),
-				Toast.LENGTH_SHORT).show();
+//		if (position > 0) {
+//			Toast.makeText(parent.getContext(),
+//					"Saving your Preferences " + position + " ", Toast.LENGTH_SHORT)
+//					.show();
+//		}
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		// TODO Auto-generated method stub
+	}
 
+	private class SendData extends AsyncTask<String, String, String> {
+		HttpClient httpClient;
+		HttpPost httpPost;
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+				String email = params[0];
+				String day_id = params[1];
+				String loc = params[2];
+				String encodedLoc = URLEncoder.encode(loc, "UTF-8");
+				String st = params[3];
+				String et = params[4];
+
+				String toPHP = "email='" + email + "'&&" + "day_id='" + day_id
+						+ "'&&" + "loc='" + encodedLoc + "'&&" + "st='" + st
+						+ "'&&" + "et='" + et + "'";
+
+				System.out.println(toPHP);
+
+				httpClient = new DefaultHttpClient();
+				httpPost = new HttpPost(
+						"http://omega.uta.edu/~sxk7162/enter_timings.php?"
+								+ toPHP);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("wooooooooo hooo");
+
+			try {
+				HttpResponse httpResponse = httpClient.execute(httpPost);
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (HttpResponseException e) {
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (HttpHostConnectException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
 	}
 }
