@@ -90,7 +90,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:ems="8"
-        android:inputType="textPassword" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/editPhoneNumber"
