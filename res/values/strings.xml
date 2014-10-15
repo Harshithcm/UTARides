@@ -17,6 +17,24 @@
     <string name="buttonStartTime">Start</string>
     <string name="buttonEndTime">End</string>
     <string name="buttonSave">Save</string>
+    <string-array name="dayDropDownList">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string-array name="favSpotDropDownList">
+        <item>Walmart</item>
+        <item>India Bazaar</item>
+        <item>Bombay Bazaar</item>
+        <item>Patel Shop</item>
+        <item>Kroger</item>
+        <item>Target</item>
+        <item>China Town</item>
+    </string-array>
     
     <!-- activity_search.xml -->
     <string name="activitySearch">Search for a Ride</string>
