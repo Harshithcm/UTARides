@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -57,6 +59,12 @@ public class LoadAvailableListActivity extends Activity {
 		setContentView(R.layout.activity_available_list);
 		StrictMode.enableDefaults();
 		resultView = (ListView) findViewById(R.id.listAvailable);
+		final String DEFAULT="N/A";
+		SharedPreferences sharedpreferences= getSharedPreferences("MyData",Context.MODE_PRIVATE);
+		String name = sharedpreferences.getString("name",DEFAULT);
+		String pass =  sharedpreferences.getString("pass",DEFAULT);
+		System.out.println("Name++++++++ "+name);
+		System.out.println("Password++++ "+pass);
 
 		/* Retrieves the Date and Time values sent from Search Activity */
 		dateSearch = getIntent().getStringExtra("dateSearch");
@@ -73,7 +81,7 @@ public class LoadAvailableListActivity extends Activity {
 
 			/*Create a query parameters to be sent to web services*/
 			String params = "day_id='" + dateSearch + "'&&time='" + timeSearch
-					+ "'&&loc='"+locationSearch+"'";
+					+ "'&&loc='"+locationSearch+"'&&"+"email='"+name+"'";
 			String fullUrl = "http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
 					+ params;
 			System.out.println("fullurl - " + fullUrl);

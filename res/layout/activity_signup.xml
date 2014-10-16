@@ -60,7 +60,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:ems="8"
-        android:text="email@mavs.uta.edu" />
+        android:hint="email@mavs.uta.edu" />
 
     <EditText
         android:id="@+id/editSignUpPassword"

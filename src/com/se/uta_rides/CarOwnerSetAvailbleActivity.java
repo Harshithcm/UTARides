@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -56,7 +57,6 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		System.out.println(1);
 		favSpotDropDownList = (Spinner) findViewById(R.id.favSpotDropDownList);
 		System.out.println(2);
-		buttonSave = (Button) findViewById(R.id.buttonSave);
 		System.out.println(3);
 		buttonStartTime = (Button) findViewById(R.id.buttonStartTime);
 		System.out.println(3.5);
@@ -66,6 +66,7 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		System.out.println(4.5);
 		textEndTime = (EditText) findViewById(R.id.textEndTime);
 		System.out.println(4.6);
+		buttonSave = (Button) findViewById(R.id.buttonSave);
 
 		buttonSave.setOnClickListener(this);
 		System.out.println(5);
@@ -200,17 +201,13 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 				String encodedLoc = URLEncoder.encode(loc, "UTF-8");
 				String st = params[3];
 				String et = params[4];
-
-				String toPHP = "email='" + email + "'&&" + "day_id='" + day_id
+				String totimingsPHP = "email='" + email + "'&&" + "day_id='" + day_id
 						+ "'&&" + "loc='" + encodedLoc + "'&&" + "st='" + st
 						+ "'&&" + "et='" + et + "'";
-
-				System.out.println(toPHP);
-
 				httpClient = new DefaultHttpClient();
 				httpPost = new HttpPost(
 						"http://omega.uta.edu/~sxk7162/enter_timings.php?"
-								+ toPHP);
+								+ totimingsPHP);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
