@@ -1,6 +1,10 @@
 package com.se.uta_rides;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -136,6 +140,25 @@ public class SearchActivity extends Activity implements OnClickListener,
 			String dateSearch = selectedDate;
 			String timeSearch = selectedTime;
 			String locationSearch = selectedLocation;
+			DateFormat formatter;
+			Date selDate = null;
+			formatter = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				selDate = formatter.parse(selectedDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(sdf.format(date));
+			
+			if (selDate.before(date)){
+				Toast.makeText(getApplicationContext(), "Please Select a future date",
+						Toast.LENGTH_SHORT).show();
+			}else{
+			
+			
 			System.out
 					.println("before select " + dateSearch + " " + timeSearch);
 			i = new Intent(SearchActivity.this, LoadAvailableListActivity.class);
@@ -143,6 +166,7 @@ public class SearchActivity extends Activity implements OnClickListener,
 			i.putExtra("timeSearch", timeSearch);
 			i.putExtra("locationSearch", locationSearch);
 			startActivity(i);
+			}
 			break;
 		}
 	}

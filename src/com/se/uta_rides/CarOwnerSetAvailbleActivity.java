@@ -1,6 +1,10 @@
 package com.se.uta_rides;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
@@ -101,6 +105,8 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.buttonSave:
+			
+			
 			Toast.makeText(
 					CarOwnerSetAvailbleActivity.this,
 					"You selected : "
@@ -121,6 +127,7 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 					String.valueOf(dayDropDownList.getSelectedItem()),
 					String.valueOf(favSpotDropDownList.getSelectedItem()),
 					selectedStartTime, selectedEndTime);
+			
 
 			break;
 

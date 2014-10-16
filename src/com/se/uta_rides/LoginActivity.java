@@ -203,7 +203,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 			System.out.println("Printing the result "+result);
 			if(result.equals("true"))
 			{    //&& (!username.equals("") && !password.equals(""))){
-				Toast.makeText(getApplicationContext(), "Redirecting...", 
+				Toast.makeText(getApplicationContext(), "Logging in...", 
 						Toast.LENGTH_SHORT).show();
 				System.out.println("Exeucuting shared preferences");
 				SharedPreferences sharedpreferences= getSharedPreferences("MyData",Context.MODE_PRIVATE);			      

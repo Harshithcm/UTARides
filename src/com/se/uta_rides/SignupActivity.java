@@ -66,7 +66,22 @@ public class SignupActivity extends Activity implements OnClickListener {
 		String name = editSignUpName.getText().toString();
 		String phoneNumber = editPhoneNumber.getText().toString();
 		// int intPhone = Integer.parseInt(phoneNumber);
-		if (!confirmPassword.equals(password)) {
+		if(email.isEmpty()){
+			Toast.makeText(getApplicationContext(), "Enter values in email field",
+					Toast.LENGTH_SHORT).show();
+		}else if (password.isEmpty()) {
+			Toast.makeText(getApplicationContext(), "Enter values in password field",
+					Toast.LENGTH_SHORT).show();
+		}else if (confirmPassword.isEmpty()) {
+			Toast.makeText(getApplicationContext(), "Enter values in confirm password field",
+					Toast.LENGTH_SHORT).show();
+		}else if (name.isEmpty()) {
+			Toast.makeText(getApplicationContext(), "Enter values in name field",
+					Toast.LENGTH_SHORT).show();
+		}else if (phoneNumber.isEmpty()) {
+			Toast.makeText(getApplicationContext(), "Enter values in phone number field",
+					Toast.LENGTH_SHORT).show();
+		}else if (!confirmPassword.equals(password)) {
 			Toast.makeText(getApplicationContext(), "Passwords don't match",
 					Toast.LENGTH_SHORT).show();
 		} else if (password.length() < 8) {
@@ -90,6 +105,7 @@ public class SignupActivity extends Activity implements OnClickListener {
 			
 			Intent i = new Intent("com.se.uta_rides.LOGINACTIVITY");
 			startActivity(i);
+			finish();
 		}
 	}
 
