@@ -28,8 +28,8 @@ import android.widget.Toast;
 /*SearchActivity - Allows users to Search for a list of Car Owner, within a specified time and date*/
 public class SearchActivity extends Activity implements OnClickListener,
 		OnItemSelectedListener {
-	Button buttonSearch, buttonDate, buttonTime;
-	private Spinner favSpotDropDownList;
+	Button buttonSearch, buttonDate, buttonTime, buttonMap;
+	private Spinner favDestDropDownList;
 	EditText textDate, textTime;
 	Intent i;
 	Calendar calendar;
@@ -47,15 +47,16 @@ public class SearchActivity extends Activity implements OnClickListener,
 		buttonDate = (Button) findViewById(R.id.buttonDate);
 		buttonTime = (Button) findViewById(R.id.buttonTime);
 		buttonSearch = (Button) findViewById(R.id.buttonSearch);
-		favSpotDropDownList = (Spinner) findViewById(R.id.favSpotDropDownList);
+		buttonMap = (Button) findViewById(R.id.buttonMap);
+		favDestDropDownList = (Spinner) findViewById(R.id.favDestDropDownList);
 
-		ArrayAdapter<CharSequence> favSpotDropDownListAdapter = ArrayAdapter
-				.createFromResource(this, R.array.favSpotDropDownList,
+		ArrayAdapter<CharSequence> favDestDropDownListAdapter = ArrayAdapter
+				.createFromResource(this, R.array.favDestDropDownList,
 						android.R.layout.simple_spinner_item);
-		favSpotDropDownListAdapter
+		favDestDropDownListAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		favSpotDropDownList.setAdapter(favSpotDropDownListAdapter);
-		favSpotDropDownList.setOnItemSelectedListener(this);
+		favDestDropDownList.setAdapter(favDestDropDownListAdapter);
+		favDestDropDownList.setOnItemSelectedListener(this);
 		System.out.println(9);
 
 		/* Retrieves the Date and Time text views */
@@ -65,6 +66,7 @@ public class SearchActivity extends Activity implements OnClickListener,
 		buttonDate.setOnClickListener(this);
 		buttonTime.setOnClickListener(this);
 		buttonSearch.setOnClickListener(this);
+		buttonMap.setOnClickListener(this);
 	}
 
 	@Override
@@ -89,6 +91,11 @@ public class SearchActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
+		case R.id.buttonMap:
+			i = new Intent("com.se.uta_rides.maps.MAPSACTIVITY");
+			startActivity(i);
+			break;
+		
 		case R.id.buttonDate:
 			calendar = Calendar.getInstance();
 			mYear = calendar.get(Calendar.YEAR);
