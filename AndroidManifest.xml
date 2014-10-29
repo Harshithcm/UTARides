@@ -26,6 +26,18 @@
 
     <uses-permission android:name="com.example.pushparse.permission.C2D_MESSAGE" />
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
         android:name="com.se.pushNotification.ParseApplication"
         android:allowBackup="true"
@@ -76,22 +88,26 @@
 		                <action android:name="com.parse.push.intent.DELETE" />
 		            </intent-filter>
 		        </receiver>
-         <activity android:name=".SplashActivity" >
+
+          <activity android:name=".SplashActivity" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LOGINACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".SignupActivity" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SIGNUPACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -100,6 +116,7 @@
             android:label="@string/activityLaunch" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LAUNCHACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -108,6 +125,7 @@
             android:label="@string/activitySearch" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SEARCHACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -116,6 +134,7 @@
             android:label="@string/actvitiyAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LOADAVAILABLELISTACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -124,6 +143,7 @@
             android:label="@string/activityDB" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CONNECTDBACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -132,6 +152,7 @@
             android:label="@string/activityCarOwnersDetails" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSDETAILSACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -140,9 +161,29 @@
             android:label="@string/activityCarOwnerSetAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSETAVAILABLEACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SelectedUserDetails"
+            android:label="@string/selecteduserDetails" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.SELECTEDUSERDETAILS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".maps.MapsActivity"
+            android:label="@string/activityCarOwnerSetAvailable" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.maps.MAPSACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -192,7 +193,7 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 				String email = params[0];
 				String day_id = params[1];
 				String loc = params[2];
-				String encodedLoc = URLEncoder.encode(loc, "UTF-8");
+				String encodedLoc = URLEncoder.encode(loc, "UTF-8").replace("+", "%20");
 				String st = params[3];
 				String et = params[4];
 				String totimingsPHP = "email='" + email + "'&&" + "day_id='" + day_id
@@ -210,16 +211,19 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 
 			try {
 				HttpResponse httpResponse = httpClient.execute(httpPost);
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+			} catch(UnsupportedEncodingException e){
+				Log.e("CarOwnerSetAvailableActivity URL Encode - ", e.toString());
+			}
+			catch (IllegalArgumentException e) {
+				Log.e("CarOwnerSetAvailableActivity Illegal Args - ", e.toString());
 			} catch (HttpResponseException e) {
-				e.printStackTrace();
+				Log.e("CarOwnerSetAvailableActivity Response - ", e.toString());
 			} catch (ClientProtocolException e) {
-				e.printStackTrace();
+				Log.e("CarOwnerSetAvailableActivity Protocol - ", e.toString());
 			} catch (HttpHostConnectException e) {
-				e.printStackTrace();
+				Log.e("CarOwnerSetAvailableActivity Connection - ", e.toString());
 			} catch (IOException e) {
-				e.printStackTrace();
+				Log.e("CarOwnerSetAvailableActivity IO - ", e.toString());
 			}
 
 			return null;
