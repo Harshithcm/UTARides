@@ -4,15 +4,23 @@ package com.se.uta_rides;
 //import com.parse.ParseObject;
 =======
 >>>>>>> 3c11cac54c60e2d7d3945a520d558f6d9291fece*/
+import com.parse.ParseInstallation;
+import com.se.pushNotification.ParseApplication;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 /*CarOwnersDetailsActivity - Displays the Name and Contact of the selected Car Owner*/
 
-public class CarOwnersDetailsActivity extends Activity {
+public class CarOwnersDetailsActivity extends Activity implements OnClickListener {
 	private String carOwnerName, carOwnerNumber, carOwnerFromTime, carOwnerToTime;
 	private TextView riderName, riderNumber, riderFromTime, riderToTime;
+	Button sendNotify;
+	ParseApplication parse = new ParseApplication();
 
 /*<<<<<<< HEAD
 	//ParseObject obj;
@@ -41,5 +49,16 @@ public class CarOwnersDetailsActivity extends Activity {
 		riderNumber.setText(carOwnerNumber);
 		riderFromTime.setText(carOwnerFromTime);
 		riderToTime.setText(carOwnerToTime);
+		sendNotify = (Button)findViewById(R.id.notifyButton);
+		sendNotify.setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId()){
+		case R.id.notifyButton:
+			parse.sendNotification("akshatha@gmail.com");
+		}
 	}
 }

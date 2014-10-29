@@ -58,29 +58,18 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		setContentView(R.layout.activity_carowner_set_available);
 
 		dayDropDownList = (Spinner) findViewById(R.id.dayDropDownList);
-		System.out.println(1);
 		favSpotDropDownList = (Spinner) findViewById(R.id.favSpotDropDownList);
-		System.out.println(2);
-		System.out.println(3);
 		buttonStartTime = (Button) findViewById(R.id.buttonStartTime);
-		System.out.println(3.5);
 		buttonEndTime = (Button) findViewById(R.id.buttonEndTime);
-		System.out.println(4);
 		textStartTime = (EditText) findViewById(R.id.textStartTime);
-		System.out.println(4.5);
 		textEndTime = (EditText) findViewById(R.id.textEndTime);
-		System.out.println(4.6);
 		buttonSave = (Button) findViewById(R.id.buttonSave);
-
+		
 		buttonSave.setOnClickListener(this);
-		System.out.println(5);
 		buttonStartTime.setOnClickListener(this);
-		System.out.println(6);
 		buttonEndTime.setOnClickListener(this);
-		System.out.println(7);
 
 		dayDropDownList.setOnItemSelectedListener(this);
-		System.out.println(8);
 
 		ArrayAdapter<CharSequence> dayDropDownListAdapter = ArrayAdapter
 				.createFromResource(this, R.array.dayDropDownList,
@@ -89,7 +78,6 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dayDropDownList.setAdapter(dayDropDownListAdapter);
 		dayDropDownList.setOnItemSelectedListener(this);
-		System.out.println(8);
 
 		ArrayAdapter<CharSequence> favSpotDropDownListAdapter = ArrayAdapter
 				.createFromResource(this, R.array.favSpotDropDownList,
@@ -98,7 +86,6 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		favSpotDropDownList.setAdapter(favSpotDropDownListAdapter);
 		favSpotDropDownList.setOnItemSelectedListener(this);
-		System.out.println(9);
 	}
 
 	@Override

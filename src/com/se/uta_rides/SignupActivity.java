@@ -14,8 +14,12 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.parse.ParseInstallation;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +43,7 @@ public class SignupActivity extends Activity implements OnClickListener {
 	HttpResponse response;
 	HttpEntity entity;
 	InputStream isr;
+	String name="";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,16 @@ public class SignupActivity extends Activity implements OnClickListener {
 		String name = editSignUpName.getText().toString();
 		String phoneNumber = editPhoneNumber.getText().toString();
 		// int intPhone = Integer.parseInt(phoneNumber);
+		
+		//storing the email id of student into parse database.
+		
+		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+		System.out.println(installation.toString());
+		installation.put("User_id", email);
+		installation.saveInBackground();
+		System.out.println("saved into DB");
+		
+		//validation sequence for all the inputs
 		if(email.isEmpty()){
 			Toast.makeText(getApplicationContext(), "Enter values in email field",
 					Toast.LENGTH_SHORT).show();
