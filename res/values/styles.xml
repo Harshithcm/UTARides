@@ -25,5 +25,18 @@
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
     </style>
+    
+
+    <style name="boldText">
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="normalText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#C0C0C0</item>
+    </style>
+
+
 
 </resources>

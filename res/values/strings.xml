@@ -4,6 +4,11 @@
     <string name="app_name">UTA RIDES</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+    <string name="selecteduserDetails">Selected User Details</string>
+    
+    <color name="highlightedTextViewColor">#000088</color>
+    <color name="normalTextViewColor">#000044</color>
 
     <!-- activity_welcome.xml -->
     <string name="buttonLogIn">Log In</string>

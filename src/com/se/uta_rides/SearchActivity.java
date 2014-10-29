@@ -188,7 +188,7 @@ public class SearchActivity extends Activity implements OnClickListener,
 			long arg3) {
 		Toast.makeText(
 				parent.getContext(),
-				"OnItemSelectedListener : "
+				"Location selected : "
 						+ parent.getItemAtPosition(position).toString(),
 				Toast.LENGTH_SHORT).show();
 		selectedLocation = parent.getItemAtPosition(position).toString();

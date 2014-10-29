@@ -25,10 +25,13 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -40,13 +43,19 @@ public class LoadAvailableListActivity extends Activity {
 	ListView listView;
 	ListAdapter adapter;
 	ProgressDialog mProgressDialog;
+	HashMap<String, String> map;
 	ArrayList<HashMap<String, String>> arrayList;
+	//ArrayList<HashMap<String, String>> arrayList1;
 	ListView resultView;
 	String dateSearch, timeSearch, result, locationSearch,
 			encodedLocationSearch;
-	String firstName, lastName, phoneNumber;
+	String firstName, lastName, phoneNumber,email,startTime,endTime;
 	private static final String NAME = "u_name";
-	private static final String PHONE_NUMBER = "co_contact";
+	private static final String PHONE_NUMBER = "u_contact";
+	private static final String EMAIL="u_email";
+	private static final String START_TIME="start_time";
+	private static final String END_TIME="end_time";
+	//public static final String ID_EXTRA="ID";
 	List<NameValuePair> newValuePairs;
 	HttpClient httpClient;
 	HttpPost httppost;
@@ -148,20 +157,26 @@ public class LoadAvailableListActivity extends Activity {
 					JSONObject jsonObject = jsonArray.getJSONObject(i);
 					firstName = jsonObject.getString(NAME);
 					phoneNumber = jsonObject.getString(PHONE_NUMBER);
-
+					email  = jsonObject.getString(EMAIL);
+					startTime = jsonObject.getString(START_TIME);
+					endTime = jsonObject.getString(END_TIME);
 					HashMap<String, String> map = new HashMap<String, String>();
 
 					map.put(NAME, firstName);
 					map.put(PHONE_NUMBER, phoneNumber);
+					map.put(EMAIL, email);
+					map.put(START_TIME, startTime);
+					map.put(END_TIME, endTime);
 					arrayList.add(map);
 				}
 				/* Retrieve a List View to set the list of available Rides */
 				resultView = (ListView) findViewById(R.id.listAvailable);
 				ListAdapter adapter = new SimpleAdapter(
-						LoadAvailableListActivity.this, arrayList,
+						LoadAvailableListActivity.this,arrayList ,
 						R.layout.activity_median, new String[] { NAME },
 						new int[] { R.id.textMedian });
 				resultView.setAdapter(adapter);
+				resultView.setOnItemClickListener(onListClick);
 
 			} catch (JSONException e) {
 				Log.e("Error", e.getMessage());
@@ -172,4 +187,26 @@ public class LoadAvailableListActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 		}
 	}
+	
+	private AdapterView.OnItemClickListener onListClick=new AdapterView.OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Intent i=new Intent(LoadAvailableListActivity.this,SelectedUserDetails.class);
+			System.out.println(String.valueOf(id));
+			System.out.println(arrayList.get((int)id).get("u_name"));
+			
+			i.putExtra("firstName", arrayList.get((int)id).get("u_name"));
+			i.putExtra("email", arrayList.get((int)id).get("u_email"));
+			i.putExtra("phoneNumber", arrayList.get((int)id).get("u_contact"));
+			i.putExtra("startTime", arrayList.get((int)id).get("start_time"));
+			i.putExtra("endTime", arrayList.get((int)id).get("end_time"));
+			startActivity(i);
+			
+		}
+		
+	};
+	
+	
 }
