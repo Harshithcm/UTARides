@@ -202,6 +202,9 @@ public class LoadAvailableListActivity extends Activity {
 			i.putExtra("phoneNumber", arrayList.get((int)id).get("u_contact"));
 			i.putExtra("startTime", arrayList.get((int)id).get("start_time"));
 			i.putExtra("endTime", arrayList.get((int)id).get("end_time"));
+			i.putExtra("datesearch", dateSearch);
+			i.putExtra("timesearch", timeSearch);
+			i.putExtra("locsearch", locationSearch);
 			startActivity(i);
 			
 		}

@@ -14,7 +14,7 @@
         android:layout_marginLeft="104dp"
         android:text="Name"
         android:textColor="@color/white"
-        android:textSize="@dimen/abc_action_bar_title_text_size"
+        android:textSize="12sp"
         android:typeface="monospace" />
 
     <Button

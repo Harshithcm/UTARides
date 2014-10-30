@@ -75,7 +75,7 @@ public class SignupActivity extends Activity implements OnClickListener {
 		//storing the email id of student into parse database.
 		
 		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-		System.out.println(installation.toString());
+		System.out.println(installation);
 		installation.put("User_id", email);
 		installation.saveInBackground();
 		System.out.println("saved into DB");

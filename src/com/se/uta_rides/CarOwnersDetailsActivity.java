@@ -5,7 +5,7 @@ package com.se.uta_rides;
 =======
 >>>>>>> 3c11cac54c60e2d7d3945a520d558f6d9291fece*/
 import com.parse.ParseInstallation;
-import com.se.pushNotification.ParseApplication;
+//import com.se.pushNotification.ParseApplication;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -58,7 +58,7 @@ public class CarOwnersDetailsActivity extends Activity implements OnClickListene
 		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.notifyButton:
-			parse.sendNotification("akshatha@gmail.com");
+			//parse.sendNotification("akshatha@gmail.com");
 		}
 	}
 }

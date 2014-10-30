@@ -130,7 +130,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 			try{
 				String params1 = "email='" + username +"'&&"+ "pas='" + pasword+"'";
 				String fullUrl = "http://omega.uta.edu/verify_password_local.php?"
-						+ params;
+						+ params1;
 				System.out.println("fullurl - " + fullUrl);
 				httpClient = new DefaultHttpClient();
 				/*httppost = new HttpPost(

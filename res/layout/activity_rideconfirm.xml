@@ -1,26 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/blue_bg_grad"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/rejectButton"
+    <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/confirmButton"
-        android:layout_alignRight="@+id/confirmButton"
-        android:layout_below="@+id/confirmButton"
-        android:layout_marginTop="77dp"
-        android:text="Reject the ride" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="29dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/date"
+        android:layout_below="@+id/date"
+        android:layout_marginTop="53dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/time"
+        android:layout_centerVertical="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="43dp"
+        android:text="TextView" />
 
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="wrap_content"
+        style="@style/NiceButton"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:text="Confirm the ride" />
+        android:layout_alignBaseline="@+id/rejectButton"
+        android:layout_alignBottom="@+id/rejectButton"
+        android:layout_alignLeft="@+id/location"
+        android:text="Accept Ride" />
+
+    <Button
+        android:id="@+id/rejectButton"
+        style="@style/NiceButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="88dp"
+        android:layout_marginLeft="28dp"
+        android:layout_toRightOf="@+id/confirmButton"
+        android:text="Reject Ride" />
 
 </RelativeLayout>
