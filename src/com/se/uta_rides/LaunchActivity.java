@@ -12,7 +12,7 @@ public class LaunchActivity extends Activity implements OnClickListener {
 
 	Button student, carOwner;
 	Intent selectPath;
-
+//
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

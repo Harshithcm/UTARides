@@ -51,17 +51,6 @@
         android:inputType="time" />
 
     <Button
-        android:id="@+id/buttonSave"
-        style="@style/NiceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textEndTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/buttonSave" />
-
-    <Button
         android:id="@+id/buttonStartTime"
         style="@style/NiceButton"
         android:layout_width="wrap_content"
@@ -78,5 +67,24 @@
         android:layout_alignBottom="@+id/textEndTime"
         android:layout_alignParentRight="true"
         android:text="@string/buttonEndTime" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        style="@style/NiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textEndTime"
+        android:layout_below="@+id/textEndTime"
+        android:layout_marginLeft="31dp"
+        android:text="@string/buttonSave" />
+
+    <Button
+        android:id="@+id/buttonUpdate"
+        style="@style/NiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textEndTime"
+        android:layout_below="@+id/textEndTime"
+        android:text="@string/buttonUpdate" />
 
 </RelativeLayout>

@@ -22,6 +22,7 @@
     <string name="buttonStartTime">Start</string>
     <string name="buttonEndTime">End</string>
     <string name="buttonSave">Save</string>
+    <string name="buttonUpdate">Update</string>
 
     <string-array name="dayDropDownList">
         <item>Monday</item>
