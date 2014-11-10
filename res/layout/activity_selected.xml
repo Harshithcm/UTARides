@@ -5,73 +5,81 @@
     android:background="@drawable/blue_bg_grad"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/sName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="104dp"
-        android:text="Name"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:typeface="monospace" />
-
-    <Button
-        android:id="@+id/book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sStart"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
-        android:text="Request for a Ride"
-        android:typeface="monospace" />
-
-    <TextView
-        android:id="@+id/sStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/sEnd"
-        android:layout_alignBottom="@+id/sEnd"
-        android:layout_alignParentLeft="true"
-        android:text="Start"
-        android:textColorLink="@color/white"
-        android:typeface="monospace" />
-
-    <TextView
-        android:id="@+id/sEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/sName"
-        android:layout_marginTop="34dp"
-        android:text="Email"
-        android:textColorLink="@color/white"
-        android:typeface="monospace" />
-
-    <TextView
-        android:id="@+id/sPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/sEmail"
-        android:layout_marginTop="57dp"
-        android:autoLink="phone"
-    	android:text="123 123 1234" />
       //  android:text="Phone"
         android:textColorLink="@color/white"
         android:textSize="@dimen/abc_action_bar_title_text_size"
         android:typeface="monospace" />
 
     <TextView
+        android:id="@+id/sStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sPhone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:textSize="20sp"
+        android:text="Available From"
+        android:textColorLink="@color/white"
+        android:typeface="normal" />
+
+    <TextView
         android:id="@+id/sEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="6dp"
-        android:layout_toRightOf="@+id/sName"
-        android:text="End"
+        android:layout_below="@+id/sStart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:textSize="20sp"
+        android:text="Available Till"
         android:textColorLink="@color/white"
-        android:typeface="monospace" />
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/book"
+        style="@style/NiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sEnd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Request for a Ride"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/sName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/sPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:autoLink="phone"
+        android:text="123 123 1234"
+        android:textAppearance="@style/normalText"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/sEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="Email"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColorLink="@color/white"
+        android:textSize="20sp"
+        android:typeface="normal" />
 
 </RelativeLayout>
