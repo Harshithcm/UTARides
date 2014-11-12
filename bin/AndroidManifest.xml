@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.se.uta_rides"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -35,12 +35,12 @@
         android:required="true" />
 
     <application
-        android:name="com.se.controller.ParseApplication"
+        android:name="com.se.uta_rides.ParseApplication"
         android:allowBackup="true"
         android:icon="@drawable/uta_rides"
         android:label="@string/app_name">
         <activity
-            android:name="com.se.view.RideConfirmActivity"
+            android:name="com.se.uta_rides.RideConfirmActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.RideConfirmActivity" />
@@ -80,7 +80,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.se.controller.Receiver"
+            android:name="com.se.uta_rides.Receiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -89,21 +89,21 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.se.view.SplashActivity" >
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.se.view.LoginActivity" >
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LOGINACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.se.view.SignupActivity" >
+        <activity android:name=".SignupActivity" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SIGNUPACTIVITY" />
 
@@ -111,7 +111,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.view.LaunchActivity"
+            android:name=".LaunchActivity"
             android:label="@string/activityLaunch" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LAUNCHACTIVITY" />
@@ -120,7 +120,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.view.SearchActivity"
+            android:name=".SearchActivity"
             android:label="@string/activitySearch" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SEARCHACTIVITY" />
@@ -129,7 +129,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.controller.LoadAvailableList"
+            android:name=".LoadAvailableListActivity"
             android:label="@string/actvitiyAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.LOADAVAILABLELISTACTIVITY" />
@@ -138,7 +138,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.view.ConnectDBActivity"
+            android:name=".ConnectDBActivity"
             android:label="@string/activityDB" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CONNECTDBACTIVITY" />
@@ -147,7 +147,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.view.CarOwnersDetailsActivity"
+            android:name=".CarOwnersDetailsActivity"
             android:label="@string/activityCarOwnersDetails" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSDETAILSACTIVITY" />
@@ -156,7 +156,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.view.CarOwnerSetAvailbleActivity"
+            android:name=".CarOwnerSetAvailbleActivity"
             android:label="@string/activityCarOwnerSetAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.CAROWNERSETAVAILABLEACTIVITY" />
@@ -165,7 +165,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.view.SelectedUserDetails"
+            android:name=".SelectedUserDetails"
             android:label="@string/selecteduserDetails" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SELECTEDUSERDETAILS" />
