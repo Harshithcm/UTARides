@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.se.uta_rides.maps.MapsActivity;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -30,13 +32,14 @@ public class SearchActivity extends Activity implements OnClickListener,
 		OnItemSelectedListener {
 	Button buttonSearch, buttonDate, buttonTime, buttonMap;
 	private Spinner favDestDropDownList;
-	EditText textDate, textTime, textSeatsRequired;
+	EditText textDate, textTime, textSeatsRequired, textDestination;
 	Intent i;
 	Calendar calendar;
-	String selectedDate, selectedTime,selectedLocation, selectedSeatsRequired;
+	String selectedDate, selectedTime, selectedLocation, selectedSeatsRequired;
 	int mYear, mMonth, mDay, tHour, tMinute;
 	DatePickerDialog datePick;
 	TimePickerDialog timePick;
+	float selectedLocationLatitude, selectedLocationLongitude;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +52,22 @@ public class SearchActivity extends Activity implements OnClickListener,
 		buttonSearch = (Button) findViewById(R.id.buttonSearch);
 		buttonMap = (Button) findViewById(R.id.buttonMap);
 		textSeatsRequired = (EditText) findViewById(R.id.textSeatsRequired);
-		favDestDropDownList = (Spinner) findViewById(R.id.favDestDropDownList);
-
-		ArrayAdapter<CharSequence> favDestDropDownListAdapter = ArrayAdapter
-				.createFromResource(this, R.array.favDestDropDownList,
-						android.R.layout.simple_spinner_item);
-		favDestDropDownListAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		favDestDropDownList.setAdapter(favDestDropDownListAdapter);
-		favDestDropDownList.setOnItemSelectedListener(this);
+		// favDestDropDownList = (Spinner)
+		// findViewById(R.id.favDestDropDownList);
+		//
+		// ArrayAdapter<CharSequence> favDestDropDownListAdapter = ArrayAdapter
+		// .createFromResource(this, R.array.favDestDropDownList,
+		// android.R.layout.simple_spinner_item);
+		// favDestDropDownListAdapter
+		// .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// favDestDropDownList.setAdapter(favDestDropDownListAdapter);
+		// favDestDropDownList.setOnItemSelectedListener(this);
 		System.out.println(9);
 
 		/* Retrieves the Date and Time text views */
 		textDate = (EditText) findViewById(R.id.textDate);
 		textTime = (EditText) findViewById(R.id.textTime);
+		textDestination = (EditText) findViewById(R.id.textDestination);
 
 		buttonDate.setOnClickListener(this);
 		buttonTime.setOnClickListener(this);
@@ -90,14 +95,48 @@ public class SearchActivity extends Activity implements OnClickListener,
 	}
 
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK && requestCode == 10) {
+			if (data.hasExtra("returnLocation")) {
+				String returnLocation = data.getExtras().getString(
+						"returnLocation");
+				if (returnLocation != null && returnLocation.length() > 0) {
+					Toast.makeText(getApplicationContext(), returnLocation,
+							Toast.LENGTH_SHORT).show();
+					selectedLocation = returnLocation;
+					selectedLocationLatitude = Float
+							.parseFloat(selectedLocation.split(",")[0]);
+					selectedLocationLongitude = Float
+							.parseFloat(selectedLocation.split(",")[1]);
+				}
+			}
+		}
+	}
+
+	@Override
 	public void onClick(View view) {
 		selectedSeatsRequired = textSeatsRequired.getText().toString();
+		
 		switch (view.getId()) {
 		case R.id.buttonMap:
-			i = new Intent("com.se.uta_rides.maps.MAPSACTIVITY");
-			startActivity(i);
+			try {
+				selectedLocation = textDestination.getText().toString();
+				if (selectedLocation != null && !selectedLocation.equals("")) {
+					i = new Intent("com.se.uta_rides.maps.MAPSACTIVITY");
+					i.putExtra("sendLocation", selectedLocation);
+					startActivityForResult(i, 10);
+				} else {
+					Toast.makeText(getApplicationContext(),
+							"Please enter a Location to search",
+							Toast.LENGTH_LONG);
+				}
+			} catch (Exception e) {
+				Toast.makeText(getApplicationContext(),
+						"Please enter a Location to search", Toast.LENGTH_LONG);
+			}
+
 			break;
-		
+
 		case R.id.buttonDate:
 			calendar = Calendar.getInstance();
 			mYear = calendar.get(Calendar.YEAR);
@@ -156,27 +195,27 @@ public class SearchActivity extends Activity implements OnClickListener,
 			try {
 				selDate = formatter.parse(selectedDate);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Date date = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			System.out.println(sdf.format(date));
-			
-			if (selDate.before(date)){
-				Toast.makeText(getApplicationContext(), "Please Select a future date",
-						Toast.LENGTH_SHORT).show();
-			}else{
-			
-			
-			System.out
-					.println("before select " + dateSearch + " " + timeSearch);
-			i = new Intent(SearchActivity.this, LoadAvailableListActivity.class);
-			i.putExtra("dateSearch", dateSearch);
-			i.putExtra("timeSearch", timeSearch);
-			i.putExtra("locationSearch", locationSearch);
-			i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
-			startActivity(i);
+
+			if (selDate.before(date)) {
+				Toast.makeText(getApplicationContext(),
+						"Please Select a future date", Toast.LENGTH_SHORT)
+						.show();
+			} else {
+
+				System.out.println("before select " + dateSearch + " "
+						+ timeSearch);
+				i = new Intent(SearchActivity.this,
+						LoadAvailableListActivity.class);
+				i.putExtra("dateSearch", dateSearch);
+				i.putExtra("timeSearch", timeSearch);
+				i.putExtra("locationSearch", locationSearch);
+				i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
+				startActivity(i);
 			}
 			break;
 		}
@@ -201,7 +240,5 @@ public class SearchActivity extends Activity implements OnClickListener,
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
 	}
 }
