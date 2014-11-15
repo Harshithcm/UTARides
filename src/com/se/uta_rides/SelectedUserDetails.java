@@ -27,7 +27,7 @@ public class SelectedUserDetails extends Activity implements OnClickListener{
 	String dateAcquired="";
 	String timeAcquired="";
 	String locSearch="";
-	
+	String numberofseatsrequired="";
 	//ArrayList<HashMap<String, String>> passedVar;
 	private TextView passedViewName=null;
 	private TextView passedViewEmail=null;
@@ -55,6 +55,7 @@ public class SelectedUserDetails extends Activity implements OnClickListener{
 		dateAcquired = getIntent().getStringExtra("datesearch");
 		timeAcquired = getIntent().getStringExtra("timesearch");
 		locSearch = getIntent().getStringExtra("locsearch");
+		numberofseatsrequired = getIntent().getStringExtra("numberofseatsrequired");
 		
 		passedViewName=(TextView)findViewById(R.id.sName);
 		passedViewEmail=(TextView)findViewById(R.id.sEmail);
@@ -93,7 +94,7 @@ public class SelectedUserDetails extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.book:
-			parse.sendNotificationtoCarowner(passedEmail,dateAcquired,timeAcquired,locSearch,emailid_stu);
+			parse.sendNotificationtoCarowner(passedEmail,dateAcquired,timeAcquired,locSearch,emailid_stu,numberofseatsrequired);
 		}
 		
 	}

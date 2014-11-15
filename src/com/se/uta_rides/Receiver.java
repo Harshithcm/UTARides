@@ -37,6 +37,7 @@ public class Receiver extends ParsePushBroadcastReceiver {
 		String date = "";
 		String loc = "";
 		String concatenatedString = "";
+		String numberOfSeatsRequired = "";
 	    try {
 	      JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
 	      //JSONObject json1 = new JSONObject(intent.getExtras().getString("com.parse.Target"));
@@ -47,6 +48,8 @@ public class Receiver extends ParsePushBroadcastReceiver {
 	      time = json.getString("time");
 	      date = json.getString("date");
 	      loc = json.getString("location");
+	      numberOfSeatsRequired=json.getString("numberofseatsrequired");
+	      System.out.println("receiver class params main"+time+date+loc+numberOfSeatsRequired);
 	      System.out.println("notificationText = "+alert);
 	      System.out.println("email id = "+emailid_stu);
 	    } catch (JSONException e) {
@@ -55,7 +58,7 @@ public class Receiver extends ParsePushBroadcastReceiver {
 	    
 	    
 	    
-	    if(alert.equalsIgnoreCase("request")){
+	    if(alert.startsWith("Request")){
 		
 	    //Log.e("Push", "Clicked");
 	    Intent i = new Intent(context, RideConfirmActivity.class);
@@ -65,13 +68,20 @@ public class Receiver extends ParsePushBroadcastReceiver {
 	    i.putExtra("date", date);
 	    i.putExtra("f_name", concatenatedString);
 	    i.putExtra("loc", loc);
+	    i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
 	    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    System.out.println("receiver class params request"+time+date+loc+numberOfSeatsRequired);
 	    context.startActivity(i);
-	    }else if (alert.equalsIgnoreCase("Rejected")){
-	    	 Intent i = new Intent(context, SplashActivity.class);
+	    }else if (alert.startsWith("Rejected")){
+	    	 Intent i = new Intent(context, LoadAvailableListActivity.class);
 	 	    i.putExtras(intent.getExtras());
-	 	    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	 	    context.startActivity(i);
+	 	    i.putExtra("timeSearch", time);
+	 	    System.out.println("receiver class params rejected"+time+date+loc+numberOfSeatsRequired);
+		    i.putExtra("dateSearch", date);
+		    i.putExtra("locationSearch", loc);
+		    i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
+		    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    context.startActivity(i);
 	    }
 	}
 }

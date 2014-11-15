@@ -101,12 +101,12 @@ public class LoadAvailableListActivity extends Activity {
 			String params = "day_id='" + dateSearch + "'&&time='" + timeSearch
 					+ "'&&loc='" + locationSearch + "'&&" + "email='" + name
 					+ "'&&seats=" + numberOfSeatsRequired;
-			String fullUrl = "http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
+			String fullUrl = "http://omega.uta.edu/~sxk7162/get_carowner_details1.php?"
 					+ params;
 			System.out.println("fullurl - " + fullUrl);
 			httpClient = new DefaultHttpClient();
 			httppost = new HttpPost(
-					"http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
+					"http://omega.uta.edu/~sxk7162/get_carowner_details1.php?"
 							+ params);
 			response = httpClient.execute(httppost);
 			System.out.println(response);

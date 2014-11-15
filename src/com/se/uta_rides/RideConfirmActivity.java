@@ -29,6 +29,7 @@ public class RideConfirmActivity extends Activity implements OnClickListener{
 	String date1="";
 	String time1="";
 	String location1="";
+	String numberOfSeatsRequired="";
 	Button confirm,reject;
 	HttpClient httpClient;
 	HttpPost httppost;
@@ -55,6 +56,7 @@ public class RideConfirmActivity extends Activity implements OnClickListener{
 		date1 = getIntent().getStringExtra("date");
 		time1 = getIntent().getStringExtra("time");
 		location1 = getIntent().getStringExtra("loc");
+		numberOfSeatsRequired=getIntent().getStringExtra("numberOfSeatsRequired");
 		
 		name=(TextView)findViewById(R.id.name);
 		date=(TextView)findViewById(R.id.date);
@@ -76,6 +78,7 @@ public class RideConfirmActivity extends Activity implements OnClickListener{
 		System.out.println("email id of student"+emailid_stu1);
 		System.out.println("date recorded"+date1);
 		System.out.println("time recorded"+time1);
+		System.out.println("number of seats"+numberOfSeatsRequired);
 		confirm = (Button)findViewById(R.id.confirmButton);
 		reject = (Button)findViewById(R.id.rejectButton);
 		
@@ -94,7 +97,7 @@ public class RideConfirmActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.rejectButton:
-			parse.sendNotificationtoStudent(emailid_stu1);
+			parse.sendNotificationtoStudent(emailid_stu1,emailid_car1,date1,time1,location1,numberOfSeatsRequired);
 			break;
 			
 		}
@@ -114,7 +117,7 @@ public class RideConfirmActivity extends Activity implements OnClickListener{
 			try{
 				String params1 = "s_email='" + emailid_stu + "'&&co_email='" + emailid_car
 						+ "'&&rdate='" + date + "'&&rtime='" + time +"'&&rloc='" + location
-						+ "'";
+						+ "'&&seats="+numberOfSeatsRequired;
 				String fullUrl = "http://omega.uta.edu/~sxk7162/update_ride_details.php?"
 						+ params1;
 				System.out.println("fullurl - " + fullUrl);

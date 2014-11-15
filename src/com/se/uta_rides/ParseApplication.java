@@ -17,6 +17,7 @@ public class ParseApplication extends Application{
 	
 	
 	Button send;
+	JSONObject data = new JSONObject();
 	@SuppressWarnings("deprecation")
 	public void onCreate(){
 		super.onCreate();
@@ -25,18 +26,18 @@ public class ParseApplication extends Application{
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 	
-	public void sendNotificationtoCarowner(String email,String date,String time,String loc,String emailid_stu){
+	public void sendNotificationtoCarowner(String email,String date,String time,String loc,String emailid_stu,String numberofseatsrequired){
 		
 		ParseQuery pQuery = ParseInstallation.getQuery();
 		pQuery.whereEqualTo("User_id", email);
 		System.out.println("query executed");
-		JSONObject data = new JSONObject();
 		try {
 			data.put("emailid_stu", emailid_stu);
-			data.put("alert", "request");
+			data.put("alert", "Request for ride by "+emailid_stu);
 			data.put("time", time);
 			data.put("date", date);
 			data.put("location", loc);
+			data.put("numberofseatsrequired",numberofseatsrequired);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,13 +50,26 @@ public class ParseApplication extends Application{
 		System.out.println(data.toString());
 	}
 	
-	public void sendNotificationtoStudent(String emailid){
+	public void sendNotificationtoStudent(String emailid_stu,String emailid_car,String date,String time,String loc,String numberofseatsrequired){
 		ParseQuery pQuery = ParseInstallation.getQuery();
-		pQuery.whereEqualTo("User_id", emailid);
+		pQuery.whereEqualTo("User_id", emailid_stu);
 		System.out.println("query executed");
+		System.out.println("query executed");
+		try {
+			data.put("emailid_stu", emailid_stu);
+			data.put("alert", "Rejected ride by "+emailid_car+" please select other ride");
+			data.put("time", time);
+			data.put("date", date);
+			data.put("location", loc);
+			data.put("numberofseatsrequired",numberofseatsrequired);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ParsePush parsepush = new ParsePush();
 		parsepush.setQuery(pQuery);
-		parsepush.setMessage("Rejected");
+		parsepush.setData(data);
+		//parsepush.setMessage("Rejected");
 		parsepush.sendInBackground();
 	}
 	
@@ -65,6 +79,7 @@ public class ParseApplication extends Application{
 		System.out.println("query executed");
 		ParsePush parsepush = new ParsePush();
 		parsepush.setQuery(pQuery);
+		//parsepush.setData(data);//to be used while handling accepted.
 		parsepush.setMessage("accepted");
 		parsepush.sendInBackground();
 	}
