@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -45,17 +46,18 @@ public class LoadAvailableListActivity extends Activity {
 	ProgressDialog mProgressDialog;
 	HashMap<String, String> map;
 	ArrayList<HashMap<String, String>> arrayList;
-	//ArrayList<HashMap<String, String>> arrayList1;
+	// ArrayList<HashMap<String, String>> arrayList1;
 	ListView resultView;
 	String dateSearch, timeSearch, result, locationSearch,
-			encodedLocationSearch, numberOfSeatsRequired;
-	String firstName, lastName, phoneNumber,email,startTime,endTime;
+			encodedLocationSearch, numberOfSeatsRequired, latitudeSearch,
+			longitudeSearch;
+	String firstName, lastName, phoneNumber, email, startTime, endTime;
 	private static final String NAME = "u_name";
 	private static final String PHONE_NUMBER = "u_contact";
-	private static final String EMAIL="u_email";
-	private static final String START_TIME="start_time";
-	private static final String END_TIME="end_time";
-	//public static final String ID_EXTRA="ID";
+	private static final String EMAIL = "u_email";
+	private static final String START_TIME = "start_time";
+	private static final String END_TIME = "end_time";
+	// public static final String ID_EXTRA="ID";
 	List<NameValuePair> newValuePairs;
 	HttpClient httpClient;
 	HttpPost httppost;
@@ -80,13 +82,17 @@ public class LoadAvailableListActivity extends Activity {
 		dateSearch = getIntent().getStringExtra("dateSearch");
 		timeSearch = getIntent().getStringExtra("timeSearch");
 		locationSearch = getIntent().getStringExtra("locationSearch");
-		numberOfSeatsRequired = getIntent().getStringExtra("numberOfSeatsRequired");
+		latitudeSearch = getIntent().getStringExtra("latitudeSearch");
+		longitudeSearch = getIntent().getStringExtra("longitudeSearch");
+		numberOfSeatsRequired = getIntent().getStringExtra(
+				"numberOfSeatsRequired");
 
 		try {
 			encodedLocationSearch = URLEncoder.encode(locationSearch, "UTF-8")
 					.replace("+", "%20");
 		} catch (UnsupportedEncodingException e) {
-			Log.e("LoadAvailableListActivity - x", e.toString());
+			Log.e("LoadAvailableListActivity - UnsupportedEncodingException",
+					e.toString());
 		}
 		arrayList = new ArrayList<HashMap<String, String>>();
 
@@ -99,9 +105,10 @@ public class LoadAvailableListActivity extends Activity {
 
 			/* Create a query parameters to be sent to web services */
 			String params = "day_id='" + dateSearch + "'&&time='" + timeSearch
-					+ "'&&loc='" + locationSearch + "'&&" + "email='" + name
-					+ "'&&seats=" + numberOfSeatsRequired;
-			String fullUrl = "http://omega.uta.edu/~sxk7162/get_carowner_details1.php?"
+					+ "'&&loc='" + encodedLocationSearch + "'&&email='" + name
+					+ "'&&lat='" + latitudeSearch + "'&&long='"
+					+ longitudeSearch + "'&&seats=" + numberOfSeatsRequired;
+			String fullUrl = "http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
 					+ params;
 			System.out.println("fullurl - " + fullUrl);
 			httpClient = new DefaultHttpClient();
@@ -117,15 +124,17 @@ public class LoadAvailableListActivity extends Activity {
 				System.out.println("byte - " + isr.available());
 			}
 		} catch (UnsupportedEncodingException e) {
-			Log.e("log_tag",
+			Log.e("LoadAvailableListActivity - ",
 					" Error in UnsupportedEncodingException - " + e.toString());
 		} catch (ClientProtocolException e) {
-			Log.e("log_tag",
+			Log.e("LoadAvailableListActivity - ",
 					" Error in ClientProtocolException - " + e.toString());
 		} catch (IOException e) {
-			Log.e("log_tag", " Error in IOException - " + e.toString());
+			Log.e("LoadAvailableListActivity - ", " Error in IOException - "
+					+ e.toString());
 		} catch (Exception e) {
-			Log.e("log_tag", " Error in Connection" + e.toString());
+			Log.e("LoadAvailableListActivity - ",
+					" Error in Connection" + e.toString());
 		}
 
 		// Convert Response to String
@@ -142,9 +151,9 @@ public class LoadAvailableListActivity extends Activity {
 			result = sb.toString();
 			System.out.println("result from ISR : " + result);
 		} catch (Exception e) {
-			Log.e("log_tag", "Error converting result " + e.toString());
+			Log.e("LoadAvailableListActivity - ", "Error converting result " + e.toString());
 		}
-		
+
 		System.out.println("LoadAvailableListActivity - " + result);
 
 		if (result != null) {
@@ -158,7 +167,7 @@ public class LoadAvailableListActivity extends Activity {
 					JSONObject jsonObject = jsonArray.getJSONObject(i);
 					firstName = jsonObject.getString(NAME);
 					phoneNumber = jsonObject.getString(PHONE_NUMBER);
-					email  = jsonObject.getString(EMAIL);
+					email = jsonObject.getString(EMAIL);
 					startTime = jsonObject.getString(START_TIME);
 					endTime = jsonObject.getString(END_TIME);
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -173,14 +182,14 @@ public class LoadAvailableListActivity extends Activity {
 				/* Retrieve a List View to set the list of available Rides */
 				resultView = (ListView) findViewById(R.id.listAvailable);
 				ListAdapter adapter = new SimpleAdapter(
-						LoadAvailableListActivity.this,arrayList ,
-						R.layout.activity_median, new String[] { NAME },
+						LoadAvailableListActivity.this, arrayList,
+						R.layout.activity_median, new String[] { NAME.toUpperCase(Locale.US) },
 						new int[] { R.id.textMedian });
 				resultView.setAdapter(adapter);
 				resultView.setOnItemClickListener(onListClick);
 
 			} catch (JSONException e) {
-				Log.e("Error", e.getMessage());
+				Log.e("LoadAvailableListActivity - Error", e.getMessage());
 				e.printStackTrace();
 			}
 		} else if (result == null) {
@@ -188,30 +197,27 @@ public class LoadAvailableListActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 		}
 	}
-	
-	private AdapterView.OnItemClickListener onListClick=new AdapterView.OnItemClickListener() {
+
+	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			Intent i=new Intent(LoadAvailableListActivity.this,SelectedUserDetails.class);
+			Intent i = new Intent(LoadAvailableListActivity.this,
+					SelectedUserDetails.class);
 			System.out.println(String.valueOf(id));
-			System.out.println(arrayList.get((int)id).get("u_name"));
-			
-			i.putExtra("firstName", arrayList.get((int)id).get("u_name"));
-			i.putExtra("email", arrayList.get((int)id).get("u_email"));
-			i.putExtra("phoneNumber", arrayList.get((int)id).get("u_contact"));
-			i.putExtra("startTime", arrayList.get((int)id).get("start_time"));
-			i.putExtra("endTime", arrayList.get((int)id).get("end_time"));
+			System.out.println(arrayList.get((int) id).get("u_name"));
+
+			i.putExtra("firstName", arrayList.get((int) id).get("u_name"));
+			i.putExtra("email", arrayList.get((int) id).get("u_email"));
+			i.putExtra("phoneNumber", arrayList.get((int) id).get("u_contact"));
+			i.putExtra("startTime", arrayList.get((int) id).get("start_time"));
+			i.putExtra("endTime", arrayList.get((int) id).get("end_time"));
 			i.putExtra("datesearch", dateSearch);
 			i.putExtra("timesearch", timeSearch);
 			i.putExtra("locsearch", locationSearch);
-			i.putExtra("numberofseatsrequired",numberOfSeatsRequired);
+			i.putExtra("numberofseatsrequired", numberOfSeatsRequired);
 			startActivity(i);
-			
 		}
-		
 	};
-	
-	
 }
