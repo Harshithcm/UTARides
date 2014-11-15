@@ -96,7 +96,11 @@
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="Enter Number of people taking ride"
-        android:inputType="number" />
+        android:inputType="number" >
+
+        <requestFocus />
+
+    </EditText>
 
     <EditText
         android:id="@+id/textDestination"
@@ -108,8 +112,6 @@
         android:ems="8"
         android:hint="@string/textMapHint"
         android:inputType="text" >
-
-        <requestFocus />
 
     </EditText>
 

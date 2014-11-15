@@ -1,10 +1,6 @@
 package com.se.uta_rides;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
@@ -15,11 +11,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -29,9 +23,8 @@ import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 
-import android.app.Activity;
-import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -51,11 +44,13 @@ import android.widget.Toast;
 public class CarOwnerSetAvailbleActivity extends Activity implements
 		OnClickListener, OnItemSelectedListener {
 	private Spinner dayDropDownList, favSpotDropDownList;
-	private Button buttonSave, buttonUpdate, buttonStartTime, buttonEndTime;
-	private EditText textStartTime, textEndTime, textNumberOfSeats;
+	private Button buttonSave, buttonUpdate, buttonStartTime, buttonEndTime,
+			buttonMapSetAvailable;
+	private EditText textStartTime, textEndTime, textNumberOfSeats,
+			textDestinationSetAvailable;
 	Calendar calendar;
 	String selectedDate, selectedTime, selectedNumberOfSeats;
-	String selectedStartTime, selectedEndTime;
+	String selectedStartTime, selectedEndTime, selectedLocation;
 	int mYear, mMonth, mDay, tHour, tMinute;
 	TimePickerDialog timePick;
 	HttpEntity entity;
@@ -63,6 +58,8 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 	JSONArray jArray;
 	String result, status1;
 	JSONArray jsonArray;
+	String selectedLocationLatitude, selectedLocationLongitude,
+			selectedLocationAddress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,27 +67,30 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		setContentView(R.layout.activity_carowner_set_available);
 
 		dayDropDownList = (Spinner) findViewById(R.id.dayDropDownList);
-		favSpotDropDownList = (Spinner) findViewById(R.id.favSpotDropDownList);
+		// favSpotDropDownList = (Spinner)
+		// findViewById(R.id.favSpotDropDownList);
 		buttonStartTime = (Button) findViewById(R.id.buttonStartTime);
 		buttonEndTime = (Button) findViewById(R.id.buttonEndTime);
+		buttonSave = (Button) findViewById(R.id.buttonSave);
+		buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+		buttonMapSetAvailable = (Button) findViewById(R.id.buttonMapSetAvailable);
 		textStartTime = (EditText) findViewById(R.id.textStartTime);
 		textEndTime = (EditText) findViewById(R.id.textEndTime);
-		
 		textNumberOfSeats = (EditText) findViewById(R.id.textNumberOfSeats);
+		textDestinationSetAvailable = (EditText) findViewById(R.id.textDestinationSetAvailable);
+
 		selectedNumberOfSeats = textNumberOfSeats.getText().toString();
-		System.out.println("number of seats="+selectedNumberOfSeats);
-		buttonSave = (Button) findViewById(R.id.buttonSave);
-		
+		System.out.println("number of seats=" + selectedNumberOfSeats);
+
 		buttonSave.setOnClickListener(this);
 		buttonStartTime.setOnClickListener(this);
 		buttonEndTime.setOnClickListener(this);
+		buttonUpdate.setOnClickListener(this);
+		buttonMapSetAvailable.setOnClickListener(this);
 
-		dayDropDownList.setOnItemSelectedListener(this);
+		// dayDropDownList.setOnItemSelectedListener(this);
 
 		System.out.println(8);
-		buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
-		buttonUpdate.setOnClickListener(this);
-
 
 		System.out.println(9);
 		ArrayAdapter<CharSequence> dayDropDownListAdapter = ArrayAdapter
@@ -101,94 +101,114 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		dayDropDownList.setAdapter(dayDropDownListAdapter);
 		dayDropDownList.setOnItemSelectedListener(this);
 
-		ArrayAdapter<CharSequence> favSpotDropDownListAdapter = ArrayAdapter
-				.createFromResource(this, R.array.favSpotDropDownList,
-						android.R.layout.simple_spinner_item);
-		favSpotDropDownListAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		favSpotDropDownList.setAdapter(favSpotDropDownListAdapter);
-		favSpotDropDownList.setOnItemSelectedListener(this);
+		// ArrayAdapter<CharSequence> favSpotDropDownListAdapter = ArrayAdapter
+		// .createFromResource(this, R.array.favSpotDropDownList,
+		// android.R.layout.simple_spinner_item);
+		// favSpotDropDownListAdapter
+		// .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// favSpotDropDownList.setAdapter(favSpotDropDownListAdapter);
+		// favSpotDropDownList.setOnItemSelectedListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		selectedNumberOfSeats = textNumberOfSeats.getText().toString();
-		System.out.println("number of seats="+selectedNumberOfSeats);
+		System.out.println("number of seats=" + selectedNumberOfSeats);
+
 		switch (v.getId()) {
-		case R.id.buttonSave:
-			if(selectedNumberOfSeats.isEmpty())
-			{
-				Toast.makeText(getApplicationContext(), "Enter values in number of seats field",
-						Toast.LENGTH_SHORT).show();
+		case R.id.buttonMapSetAvailable:
+			try {
+				selectedLocation = textDestinationSetAvailable.getText()
+						.toString();
+				if (selectedLocation != null && !selectedLocation.equals("")) {
+					Intent i = new Intent("com.se.uta_rides.maps.MAPSACTIVITY");
+					i.putExtra("sendLocation", selectedLocation);
+					startActivityForResult(i, 10);
+				} else {
+					Toast.makeText(getApplicationContext(),
+							"Please enter a Location to search",
+							Toast.LENGTH_LONG);
+				}
+			} catch (Exception e) {
+				Toast.makeText(getApplicationContext(),
+						"Please enter a Location to search", Toast.LENGTH_LONG);
 			}
-			else{
-			Toast.makeText(
-					CarOwnerSetAvailbleActivity.this,
-					"You selected : "
-							+ "\n"
-							+ "Day : "
-							+ String.valueOf(dayDropDownList.getSelectedItem())
-							+ "\n"
-							+ "Location : "
-							+ String.valueOf(favSpotDropDownList
-									.getSelectedItem()), Toast.LENGTH_SHORT)
-					.show();
 
-			SharedPreferences userDetails = getSharedPreferences("MyData",
-					Context.MODE_PRIVATE);
-			String userName = userDetails.getString("name", "null");
+			break;
 
-			new SendData().execute(userName,
-					String.valueOf(dayDropDownList.getSelectedItem()),
-					String.valueOf(favSpotDropDownList.getSelectedItem()),
-					selectedStartTime, selectedEndTime, selectedNumberOfSeats);
+		case R.id.buttonSave:
+			if (selectedNumberOfSeats.isEmpty()) {
+				Toast.makeText(getApplicationContext(),
+						"Enter values in number of seats field",
+						Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(
+						CarOwnerSetAvailbleActivity.this,
+						"You selected : "
+								+ "\n"
+								+ "Day : "
+								+ String.valueOf(dayDropDownList
+										.getSelectedItem()) + "\n"
+								+ "Location : "
+						// +
+						// String.valueOf(favSpotDropDownList.getSelectedItem())
+						, Toast.LENGTH_SHORT).show();
+
+				SharedPreferences userDetails = getSharedPreferences("MyData",
+						Context.MODE_PRIVATE);
+				String userName = userDetails.getString("name", "null");
+
+				new SendData().execute(userName,
+						String.valueOf(dayDropDownList.getSelectedItem()),
+						selectedStartTime, selectedEndTime,
+						selectedNumberOfSeats, selectedLocationLatitude,
+						selectedLocationLongitude, selectedLocationAddress);
 			}
 			break;
 
 		case R.id.buttonUpdate:
 			System.out.println("update");
-			if(selectedNumberOfSeats.isEmpty())
-			{
-				Toast.makeText(getApplicationContext(), "Enter values in number of seats field",
+			if (selectedNumberOfSeats.isEmpty()) {
+				Toast.makeText(getApplicationContext(),
+						"Enter values in number of seats field",
 						Toast.LENGTH_SHORT).show();
-			}
-			else{
-			
-			UpdateData update = new UpdateData();
+			} else {
 
-			SharedPreferences userDetails1 = getSharedPreferences("MyData",
-					Context.MODE_PRIVATE);
-			String userName1 = userDetails1.getString("name", "null");
+				UpdateData update = new UpdateData();
 
-			AsyncTask<String, String, String> checkTimings = update.execute(
-					userName1,
-					String.valueOf(dayDropDownList.getSelectedItem()),
-					String.valueOf(favSpotDropDownList.getSelectedItem()),
-					selectedStartTime, selectedEndTime, selectedNumberOfSeats);
-			try {
-				if (checkTimings.get() != "") {
-					System.out.println("timings not set set it first");
-					Toast.makeText(CarOwnerSetAvailbleActivity.this,
-							"Please save the timings before update", 2000)
-							.show();
-				} else {
-					Toast.makeText(
-							CarOwnerSetAvailbleActivity.this,
-							"You selected : "
-									+ "\n"
-									+ "Day : "
-									+ String.valueOf(dayDropDownList
-											.getSelectedItem())
-									+ "\n"
-									+ "Location : "
-									+ String.valueOf(favSpotDropDownList
-											.getSelectedItem()),
-							Toast.LENGTH_SHORT).show();
+				SharedPreferences userDetails = getSharedPreferences("MyData",
+						Context.MODE_PRIVATE);
+				String userName = userDetails.getString("name", "null");
+
+				AsyncTask<String, String, String> checkTimings = update
+						.execute(userName, String.valueOf(dayDropDownList
+								.getSelectedItem()), selectedStartTime,
+								selectedEndTime, selectedNumberOfSeats,
+								selectedLocationLatitude,
+								selectedLocationLongitude,
+								selectedLocationAddress);
+				try {
+					if (checkTimings.get() != "") {
+						System.out.println("timings not set set it first");
+						Toast.makeText(CarOwnerSetAvailbleActivity.this,
+								"Please save the timings before update", 2000)
+								.show();
+					} else {
+						Toast.makeText(
+								CarOwnerSetAvailbleActivity.this,
+								"You selected : "
+										+ "\n"
+										+ "Day : "
+										+ String.valueOf(dayDropDownList
+												.getSelectedItem()) + "\n"
+										+ "Location : "
+								// + String.valueOf(favSpotDropDownList
+								// .getSelectedItem())
+								, Toast.LENGTH_SHORT).show();
+					}
+				} catch (InterruptedException | ExecutionException e) {
+					e.printStackTrace();
 				}
-			} catch (InterruptedException | ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			}
 			break;
 
@@ -256,6 +276,33 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 	public void onNothingSelected(AdapterView<?> parent) {
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK && requestCode == 10) {
+			if (data.hasExtra("returnLocation")) {
+				String returnLocation = data.getExtras().getString(
+						"returnLocation");
+				if (returnLocation != null && returnLocation.length() > 0) {
+					Toast.makeText(getApplicationContext(), returnLocation,
+							Toast.LENGTH_SHORT).show();
+					System.out.println("myreturn " + returnLocation);
+					String[] selectedLocationArray = returnLocation.split(":",
+							3);
+					for (int z = 0; z < selectedLocationArray.length; z++) {
+						System.out.println(selectedLocationArray[z]);
+					}
+					selectedLocationLatitude = selectedLocationArray[0];
+					selectedLocationLongitude = selectedLocationArray[1];
+					selectedLocationAddress = selectedLocationArray[2];
+					System.out.println("Got these from Map " + "address "
+							+ selectedLocationAddress + "..." + "latitude"
+							+ selectedLocationLatitude + "..." + "longitude"
+							+ selectedLocationLongitude);
+				}
+			}
+		}
+	}
+
 	private class SendData extends AsyncTask<String, String, String> {
 		HttpClient httpClient;
 		HttpPost httpPost;
@@ -265,15 +312,20 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 			try {
 				String email = params[0];
 				String day_id = params[1];
-				String loc = params[2];
+				String st = params[2];
+				String et = params[3];
+				String seats = params[4];
+				String latitude = params[5];
+				String longitude = params[6];
+				String loc = params[7];
 				String encodedLoc = URLEncoder.encode(loc, "UTF-8").replace(
 						"+", "%20");
-				String st = params[3];
-				String et = params[4];
-				String seats = params[5];
 				String totimingsPHP = "email='" + email + "'&&" + "day_id='"
 						+ day_id + "'&&" + "loc='" + encodedLoc + "'&&"
-						+ "st='" + st + "'&&" + "et='" + et + "'&&seats=" + seats;
+						+ "st='" + st + "'&&" + "et='" + et + "'&&"
+						+ "lat='" + latitude + "'&&" + "long='"
+						+ longitude + "'&&" + "seats=" + seats;
+				System.out.println(totimingsPHP);
 				httpClient = new DefaultHttpClient();
 				httpPost = new HttpPost(
 						"http://omega.uta.edu/~sxk7162/enter_timings.php?"
@@ -316,15 +368,20 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 			try {
 				String email = params[0];
 				String day_id = params[1];
-				String loc = params[2];
+				String st = params[2];
+				String et = params[3];
+				String seats = params[4];
+				String latitude = params[5];
+				String longitude = params[6];
+				String loc = params[7];
 				String encodedLoc = URLEncoder.encode(loc, "UTF-8").replace(
 						"+", "%20");
-				String st = params[3];
-				String et = params[4];
-				String seats = params[5];
 				String totimingsPHP = "email='" + email + "'&&" + "day_id='"
 						+ day_id + "'&&" + "loc='" + encodedLoc + "'&&"
-						+ "st='" + st + "'&&" + "et='" + et + "'&&seats=" + seats;
+						+ "st='" + st + "'&&" + "et='" + et + "'&&"
+						+ "lat='" + latitude + "'&&" + "long='"
+						+ longitude + "'&&" + "seats=" + seats;
+				System.out.println(totimingsPHP);
 				httpClient = new DefaultHttpClient();
 				httpPost = new HttpPost(
 						"http://omega.uta.edu/~sxk7162/update_timings_check.php?"
@@ -333,7 +390,7 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 				e.printStackTrace();
 			}
 
-			System.out.println("wooooooooo hooo");
+			System.out.println("weeeeee heeee");
 
 			try {
 				HttpResponse httpResponse = httpClient.execute(httpPost);

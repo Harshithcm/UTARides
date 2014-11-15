@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.se.uta_rides.maps.MapsActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -19,11 +17,9 @@ import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -31,7 +27,7 @@ import android.widget.Toast;
 public class SearchActivity extends Activity implements OnClickListener,
 		OnItemSelectedListener {
 	Button buttonSearch, buttonDate, buttonTime, buttonMap;
-	private Spinner favDestDropDownList;
+//	private Spinner favDestDropDownList;
 	EditText textDate, textTime, textSeatsRequired, textDestination;
 	Intent i;
 	Calendar calendar;
@@ -39,7 +35,8 @@ public class SearchActivity extends Activity implements OnClickListener,
 	int mYear, mMonth, mDay, tHour, tMinute;
 	DatePickerDialog datePick;
 	TimePickerDialog timePick;
-	float selectedLocationLatitude, selectedLocationLongitude;
+	String selectedLocationLatitude, selectedLocationLongitude,
+			selectedLocationAddress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,11 +100,18 @@ public class SearchActivity extends Activity implements OnClickListener,
 				if (returnLocation != null && returnLocation.length() > 0) {
 					Toast.makeText(getApplicationContext(), returnLocation,
 							Toast.LENGTH_SHORT).show();
-					selectedLocation = returnLocation;
-					selectedLocationLatitude = Float
-							.parseFloat(selectedLocation.split(",")[0]);
-					selectedLocationLongitude = Float
-							.parseFloat(selectedLocation.split(",")[1]);
+					System.out.println("myreturn " + returnLocation);
+					String[] selectedLocationArray = returnLocation.split(":", 3); 
+					for(int z=0; z<selectedLocationArray.length;z++){
+						System.out.println(selectedLocationArray[z]);
+					}
+					selectedLocationLatitude = selectedLocationArray[0];
+					selectedLocationLongitude = selectedLocationArray[1];
+					selectedLocationAddress = selectedLocationArray[2];
+					System.out.println("Got these from Map "
+							+ "address " + selectedLocationAddress + "..."
+							+ "latitude" + selectedLocationLatitude + "..."
+							+ "longitude" + selectedLocationLongitude);
 				}
 			}
 		}
@@ -116,7 +120,7 @@ public class SearchActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View view) {
 		selectedSeatsRequired = textSeatsRequired.getText().toString();
-		
+
 		switch (view.getId()) {
 		case R.id.buttonMap:
 			try {
@@ -187,7 +191,9 @@ public class SearchActivity extends Activity implements OnClickListener,
 		case R.id.buttonSearch:
 			String dateSearch = selectedDate;
 			String timeSearch = selectedTime;
-			String locationSearch = selectedLocation;
+			String locationSearch = selectedLocationAddress;
+			String latitudeSearch = selectedLocationLatitude;
+			String longitudeSearch = selectedLocationLongitude;
 			String numberOfSeatsRequired = selectedSeatsRequired;
 			DateFormat formatter;
 			Date selDate = null;
@@ -207,12 +213,16 @@ public class SearchActivity extends Activity implements OnClickListener,
 						.show();
 			} else {
 
-				System.out.println("before select " + dateSearch + " "
-						+ timeSearch);
+				System.out.println("Searching...... " + dateSearch + " "
+						+ timeSearch + " " + latitudeSearch + " "
+						+ longitudeSearch + " " + locationSearch + " "
+						+ numberOfSeatsRequired);
 				i = new Intent(SearchActivity.this,
 						LoadAvailableListActivity.class);
 				i.putExtra("dateSearch", dateSearch);
 				i.putExtra("timeSearch", timeSearch);
+				i.putExtra("latitudeSearch", latitudeSearch);
+				i.putExtra("longitudeSearch", longitudeSearch);
 				i.putExtra("locationSearch", locationSearch);
 				i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
 				startActivity(i);

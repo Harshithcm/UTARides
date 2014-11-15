@@ -102,8 +102,9 @@ public class MapsActivity extends FragmentActivity implements OnClickListener,
 	public boolean onMarkerClick(Marker marker) {
 		Toast.makeText(getApplicationContext(),
 				marker.getPosition().toString(), Toast.LENGTH_SHORT).show();
-		returnLocation = marker.getPosition().latitude + ","
-				+ marker.getPosition().longitude;
+		returnLocation = marker.getPosition().latitude + ":"
+				+ marker.getPosition().longitude + ":"
+				+ marker.getTitle();
 		return false;
 	}
 

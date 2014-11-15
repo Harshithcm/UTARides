@@ -1291,60 +1291,60 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0b0002;
         public static final int action_menu_presenter=0x7f0b0003;
         public static final int action_mode_close_button=0x7f0b0027;
-        public static final int action_settings=0x7f0b007f;
+        public static final int action_settings=0x7f0b0080;
         public static final int activity_chooser_view_content=0x7f0b0028;
         public static final int always=0x7f0b0013;
-        public static final int appNameTextView=0x7f0b007d;
-        public static final int availabilityTextView=0x7f0b007e;
+        public static final int appNameTextView=0x7f0b007e;
+        public static final int availabilityTextView=0x7f0b007f;
         public static final int beginning=0x7f0b001a;
-        public static final int book=0x7f0b006d;
-        public static final int button1=0x7f0b0057;
-        public static final int buttonDate=0x7f0b0066;
-        public static final int buttonEndTime=0x7f0b004a;
-        public static final int buttonMap=0x7f0b0062;
-        public static final int buttonMapSearch=0x7f0b0059;
-        public static final int buttonSave=0x7f0b004b;
-        public static final int buttonSearch=0x7f0b0068;
-        public static final int buttonStartTime=0x7f0b0049;
-        public static final int buttonTime=0x7f0b0064;
-        public static final int buttonUpdate=0x7f0b004c;
+        public static final int book=0x7f0b006e;
+        public static final int button1=0x7f0b0058;
+        public static final int buttonDate=0x7f0b0067;
+        public static final int buttonEndTime=0x7f0b0046;
+        public static final int buttonMap=0x7f0b0063;
+        public static final int buttonMapSearch=0x7f0b005a;
+        public static final int buttonMapSetAvailable=0x7f0b004b;
+        public static final int buttonSave=0x7f0b0048;
+        public static final int buttonSearch=0x7f0b0069;
+        public static final int buttonStartTime=0x7f0b004e;
+        public static final int buttonTime=0x7f0b0065;
+        public static final int buttonUpdate=0x7f0b004a;
         public static final int checkbox=0x7f0b0030;
         public static final int collapseActionView=0x7f0b0014;
-        public static final int confirmButton=0x7f0b005c;
-        public static final int date=0x7f0b0060;
+        public static final int confirmButton=0x7f0b005d;
+        public static final int date=0x7f0b0061;
         public static final int dayDropDownList=0x7f0b0045;
         public static final int default_activity_button=0x7f0b002b;
         public static final int dialog=0x7f0b0018;
         public static final int disableHome=0x7f0b000d;
         public static final int dropdown=0x7f0b0019;
-        public static final int editPhoneNumber=0x7f0b0079;
-        public static final int editSignUpConfirmPassword=0x7f0b0077;
-        public static final int editSignUpEmail=0x7f0b0075;
-        public static final int editSignUpName=0x7f0b0078;
-        public static final int editSignUpPassword=0x7f0b0076;
-        public static final int editText1=0x7f0b0053;
-        public static final int editText2=0x7f0b0055;
+        public static final int editPhoneNumber=0x7f0b007a;
+        public static final int editSignUpConfirmPassword=0x7f0b0078;
+        public static final int editSignUpEmail=0x7f0b0076;
+        public static final int editSignUpName=0x7f0b0079;
+        public static final int editSignUpPassword=0x7f0b0077;
+        public static final int editText1=0x7f0b0054;
+        public static final int editText2=0x7f0b0056;
         public static final int edit_query=0x7f0b0033;
         public static final int end=0x7f0b001b;
         public static final int expand_activities_button=0x7f0b0029;
         public static final int expanded_menu=0x7f0b002f;
-        public static final int favSpotDropDownList=0x7f0b0046;
         public static final int home=0x7f0b0000;
         public static final int homeAsUp=0x7f0b000e;
         public static final int hybrid=0x7f0b0006;
         public static final int icon=0x7f0b002d;
         public static final int ifRoom=0x7f0b0015;
         public static final int image=0x7f0b002a;
-        public static final int imageButtonGreen=0x7f0b007c;
-        public static final int launchCarOwner=0x7f0b0050;
-        public static final int launchStudent=0x7f0b004f;
+        public static final int imageButtonGreen=0x7f0b007d;
+        public static final int launchCarOwner=0x7f0b0051;
+        public static final int launchStudent=0x7f0b0050;
         public static final int listAvailable=0x7f0b003f;
         public static final int listMode=0x7f0b000b;
         public static final int list_item=0x7f0b002c;
-        public static final int location=0x7f0b005e;
-        public static final int map=0x7f0b005a;
+        public static final int location=0x7f0b005f;
+        public static final int map=0x7f0b005b;
         public static final int middle=0x7f0b001c;
-        public static final int name=0x7f0b0061;
+        public static final int name=0x7f0b0062;
         public static final int never=0x7f0b0016;
         public static final int none=0x7f0b0007;
         public static final int normal=0x7f0b0008;
@@ -1352,16 +1352,16 @@ containing a value of this type.
         public static final int progress_circular=0x7f0b0004;
         public static final int progress_horizontal=0x7f0b0005;
         public static final int radio=0x7f0b0032;
-        public static final int rejectButton=0x7f0b005d;
+        public static final int rejectButton=0x7f0b005e;
         public static final int riderFromTime=0x7f0b0042;
         public static final int riderName=0x7f0b0040;
         public static final int riderNumber=0x7f0b0041;
         public static final int riderToTime=0x7f0b0043;
-        public static final int sEmail=0x7f0b006f;
-        public static final int sEnd=0x7f0b006c;
-        public static final int sName=0x7f0b006e;
-        public static final int sPhone=0x7f0b006b;
-        public static final int sStart=0x7f0b006a;
+        public static final int sEmail=0x7f0b0070;
+        public static final int sEnd=0x7f0b006d;
+        public static final int sName=0x7f0b006f;
+        public static final int sPhone=0x7f0b006c;
+        public static final int sStart=0x7f0b006b;
         public static final int satellite=0x7f0b0009;
         public static final int search_badge=0x7f0b0035;
         public static final int search_bar=0x7f0b0034;
@@ -1377,32 +1377,33 @@ containing a value of this type.
         public static final int showCustom=0x7f0b000f;
         public static final int showHome=0x7f0b0010;
         public static final int showTitle=0x7f0b0011;
-        public static final int signUpButton=0x7f0b007a;
-        public static final int signUpConfirmPassword=0x7f0b0072;
-        public static final int signUpEmail=0x7f0b0070;
-        public static final int signUpName=0x7f0b0073;
-        public static final int signUpPassword=0x7f0b0071;
-        public static final int signUpPhoneNumber=0x7f0b0074;
-        public static final int splashLogo=0x7f0b007b;
+        public static final int signUpButton=0x7f0b007b;
+        public static final int signUpConfirmPassword=0x7f0b0073;
+        public static final int signUpEmail=0x7f0b0071;
+        public static final int signUpName=0x7f0b0074;
+        public static final int signUpPassword=0x7f0b0072;
+        public static final int signUpPhoneNumber=0x7f0b0075;
+        public static final int splashLogo=0x7f0b007c;
         public static final int split_action_bar=0x7f0b0021;
         public static final int submit_area=0x7f0b003c;
         public static final int tabMode=0x7f0b000c;
         public static final int terrain=0x7f0b000a;
-        public static final int textDB=0x7f0b004e;
-        public static final int textDate=0x7f0b0067;
-        public static final int textDestination=0x7f0b0063;
-        public static final int textEndTime=0x7f0b0048;
-        public static final int textMapSearch=0x7f0b0058;
-        public static final int textMedian=0x7f0b005b;
-        public static final int textNumberOfSeats=0x7f0b004d;
-        public static final int textSeatsRequired=0x7f0b0069;
-        public static final int textStartTime=0x7f0b0047;
-        public static final int textTime=0x7f0b0065;
-        public static final int textView1=0x7f0b0051;
-        public static final int textView2=0x7f0b0052;
-        public static final int textView3=0x7f0b0054;
-        public static final int textView4=0x7f0b0056;
-        public static final int time=0x7f0b005f;
+        public static final int textDB=0x7f0b004f;
+        public static final int textDate=0x7f0b0068;
+        public static final int textDestination=0x7f0b0064;
+        public static final int textDestinationSetAvailable=0x7f0b004c;
+        public static final int textEndTime=0x7f0b0047;
+        public static final int textMapSearch=0x7f0b0059;
+        public static final int textMedian=0x7f0b005c;
+        public static final int textNumberOfSeats=0x7f0b0049;
+        public static final int textSeatsRequired=0x7f0b006a;
+        public static final int textStartTime=0x7f0b004d;
+        public static final int textTime=0x7f0b0066;
+        public static final int textView1=0x7f0b0052;
+        public static final int textView2=0x7f0b0053;
+        public static final int textView3=0x7f0b0055;
+        public static final int textView4=0x7f0b0057;
+        public static final int time=0x7f0b0060;
         public static final int title=0x7f0b002e;
         public static final int top_action_bar=0x7f0b0023;
         public static final int up=0x7f0b0024;
@@ -1480,8 +1481,8 @@ containing a value of this type.
         public static final int search=0x7f0e0000;
     }
     public static final class string {
-        public static final int Login=0x7f070046;
-        public static final int Name=0x7f07004d;
+        public static final int Login=0x7f070047;
+        public static final int Name=0x7f07004e;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f07001b;
@@ -1525,28 +1526,28 @@ containing a value of this type.
         public static final int action_settings=0x7f070029;
         /**  activity_add_user.xml 
          */
-        public static final int activityAddUser=0x7f070057;
+        public static final int activityAddUser=0x7f070058;
         /**  activity_carowner_set_available.xml 
          */
         public static final int activityCarOwnerSetAvailable=0x7f07002e;
         /**  activity_carowner_details.xml 
          */
-        public static final int activityCarOwnersDetails=0x7f07004f;
+        public static final int activityCarOwnersDetails=0x7f070050;
         /**  activity_db.xml 
          */
-        public static final int activityDB=0x7f070041;
+        public static final int activityDB=0x7f070042;
         /**  activity_launch.xml 
          */
-        public static final int activityLaunch=0x7f070054;
+        public static final int activityLaunch=0x7f070055;
         /**  activity_median.xml 
          */
-        public static final int activityMedian=0x7f07003f;
+        public static final int activityMedian=0x7f070040;
         /**  activity_search.xml 
          */
-        public static final int activitySearch=0x7f070035;
+        public static final int activitySearch=0x7f070036;
         /**  activity_available.xml 
          */
-        public static final int actvitiyAvailable=0x7f070044;
+        public static final int actvitiyAvailable=0x7f070045;
         public static final int app_name=0x7f070027;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -1571,19 +1572,20 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f070014;
-        public static final int buttonDate=0x7f070037;
+        public static final int buttonDate=0x7f070038;
         public static final int buttonEndTime=0x7f070032;
         /**  activity_welcome.xml 
          */
         public static final int buttonLogIn=0x7f07002b;
-        public static final int buttonMap=0x7f070038;
-        public static final int buttonSave=0x7f070033;
-        public static final int buttonSearch=0x7f07003d;
+        public static final int buttonMap=0x7f070039;
+        public static final int buttonMapSetAvailable=0x7f070033;
+        public static final int buttonSave=0x7f070034;
+        public static final int buttonSearch=0x7f07003e;
         public static final int buttonSignUp=0x7f07002c;
         public static final int buttonStartTime=0x7f070031;
-        public static final int buttonTime=0x7f070039;
-        public static final int buttonUpdate=0x7f070034;
-        public static final int buttonconnectDB=0x7f07003e;
+        public static final int buttonTime=0x7f07003a;
+        public static final int buttonUpdate=0x7f070035;
+        public static final int buttonconnectDB=0x7f07003f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1655,34 +1657,34 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-        public static final int email=0x7f07004b;
+        public static final int email=0x7f07004c;
         public static final int hello_world=0x7f070028;
-        public static final int launchCarOwner=0x7f070056;
-        public static final int launchStudent=0x7f070055;
-        public static final int listAvailable=0x7f070045;
-        public static final int password=0x7f070047;
-        public static final int phone=0x7f07004c;
-        public static final int register=0x7f07004e;
-        public static final int riderFromTime=0x7f070052;
-        public static final int riderName=0x7f070050;
-        public static final int riderNumber=0x7f070051;
-        public static final int riderToTime=0x7f070053;
+        public static final int launchCarOwner=0x7f070057;
+        public static final int launchStudent=0x7f070056;
+        public static final int listAvailable=0x7f070046;
+        public static final int password=0x7f070048;
+        public static final int phone=0x7f07004d;
+        public static final int register=0x7f07004f;
+        public static final int riderFromTime=0x7f070053;
+        public static final int riderName=0x7f070051;
+        public static final int riderNumber=0x7f070052;
+        public static final int riderToTime=0x7f070054;
         public static final int selecteduserDetails=0x7f07002a;
-        public static final int sign=0x7f07004a;
+        public static final int sign=0x7f07004b;
         public static final int slogan=0x7f07002d;
         /**  activity_splash.xml 
          */
-        public static final int splashText=0x7f070043;
-        public static final int textDB=0x7f070042;
-        public static final int textDateAndTime=0x7f070036;
-        public static final int textDateHint=0x7f07003a;
+        public static final int splashText=0x7f070044;
+        public static final int textDB=0x7f070043;
+        public static final int textDateAndTime=0x7f070037;
+        public static final int textDateHint=0x7f07003b;
         public static final int textEndTime=0x7f070030;
-        public static final int textMapHint=0x7f07003c;
-        public static final int textMedian=0x7f070040;
+        public static final int textMapHint=0x7f07003d;
+        public static final int textMedian=0x7f070041;
         public static final int textStartTime=0x7f07002f;
-        public static final int textTimeHint=0x7f07003b;
-        public static final int username=0x7f070048;
-        public static final int welcome=0x7f070049;
+        public static final int textTimeHint=0x7f07003c;
+        public static final int username=0x7f070049;
+        public static final int welcome=0x7f07004a;
     }
     public static final class style {
         /** 
