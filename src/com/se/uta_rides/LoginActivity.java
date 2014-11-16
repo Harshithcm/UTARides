@@ -128,7 +128,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 			String pasword = params[1];
 			// TODO Auto-generated method stub
 			try{
-				String params1 = "email='" + username +"'&&"+ "pas='" + pasword+"'";
+				String params1 = "email='" + username.trim() +"'&&"+ "pas='" + pasword+"'";
 				String fullUrl = "http://omega.uta.edu/verify_password_local.php?"
 						+ params1;
 				System.out.println("fullurl - " + fullUrl);

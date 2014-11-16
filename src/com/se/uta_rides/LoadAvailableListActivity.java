@@ -113,7 +113,7 @@ public class LoadAvailableListActivity extends Activity {
 			System.out.println("fullurl - " + fullUrl);
 			httpClient = new DefaultHttpClient();
 			httppost = new HttpPost(
-					"http://omega.uta.edu/~sxk7162/get_carowner_details1.php?"
+					"http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
 							+ params);
 			response = httpClient.execute(httppost);
 			System.out.println(response);
@@ -183,7 +183,7 @@ public class LoadAvailableListActivity extends Activity {
 				resultView = (ListView) findViewById(R.id.listAvailable);
 				ListAdapter adapter = new SimpleAdapter(
 						LoadAvailableListActivity.this, arrayList,
-						R.layout.activity_median, new String[] { NAME.toUpperCase(Locale.US) },
+						R.layout.activity_median, new String[] { NAME },
 						new int[] { R.id.textMedian });
 				resultView.setAdapter(adapter);
 				resultView.setOnItemClickListener(onListClick);
