@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+	<uses-permission android:name="android.permission.SEND_SMS"/>
     <!--
   IMPORTANT: Change "com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" in the lines below
   to match your app's package name + ".permission.C2D_MESSAGE".
@@ -33,6 +33,8 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+    
+    
 
     <application
         android:name="com.se.uta_rides.ParseApplication"
@@ -113,6 +115,20 @@
         <activity android:name=".SignupActivity" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.SIGNUPACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".GeneratePassword" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.GENERATEPASSWORD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PasswordResetting" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.PASSWORDRESETTING" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

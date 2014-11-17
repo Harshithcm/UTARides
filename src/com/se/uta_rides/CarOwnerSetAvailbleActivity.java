@@ -41,7 +41,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 /*CarOwnerSetAvailbleActivity - Allows Car Owners to set their availability times*/
-public class CarOwnerSetAvailbleActivity extends Activity implements
+public class CarOwnerSetAvailbleActivity extends BaseActivity implements
 		OnClickListener, OnItemSelectedListener {
 	private Spinner dayDropDownList, favSpotDropDownList;
 	private Button buttonSave, buttonUpdate, buttonStartTime, buttonEndTime,
@@ -262,19 +262,7 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 		}
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position,
-			long id) {
-		// if (position > 0) {
-		// Toast.makeText(parent.getContext(),
-		// "Saving your Preferences " + position + " ", Toast.LENGTH_SHORT)
-		// .show();
-		// }
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-	}
+	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -435,5 +423,18 @@ public class CarOwnerSetAvailbleActivity extends Activity implements
 
 			return result;
 		}
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 }

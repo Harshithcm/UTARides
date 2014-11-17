@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 /*LaunchActivity - Allows user to select "Booking a ride" and "Providing a Ride"*/
-public class LaunchActivity extends Activity implements OnClickListener {
+public class LaunchActivity extends BaseActivity implements OnClickListener {
 
 	Button student, carOwner;
 	Intent selectPath;

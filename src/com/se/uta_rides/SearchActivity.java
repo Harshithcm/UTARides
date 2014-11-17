@@ -24,7 +24,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 /*SearchActivity - Allows users to Search for a list of Car Owner, within a specified time and date*/
-public class SearchActivity extends Activity implements OnClickListener,
+public class SearchActivity extends BaseActivity implements OnClickListener,
 		OnItemSelectedListener {
 	Button buttonSearch, buttonDate, buttonTime, buttonMap;
 //	private Spinner favDestDropDownList;

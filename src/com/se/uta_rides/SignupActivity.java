@@ -30,7 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SignupActivity extends Activity implements OnClickListener {
+public class SignupActivity extends BaseActivity implements OnClickListener {
 
 	private EditText editSignUpEmail;
 	private EditText editSignUpPassword;

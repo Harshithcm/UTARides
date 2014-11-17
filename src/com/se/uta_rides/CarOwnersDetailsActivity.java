@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 /*CarOwnersDetailsActivity - Displays the Name and Contact of the selected Car Owner*/
 
-public class CarOwnersDetailsActivity extends Activity implements OnClickListener {
+public class CarOwnersDetailsActivity extends BaseActivity implements OnClickListener {
 	private String carOwnerName, carOwnerNumber, carOwnerFromTime, carOwnerToTime;
 	private TextView riderName, riderNumber, riderFromTime, riderToTime;
 	Button sendNotify;

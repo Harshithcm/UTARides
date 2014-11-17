@@ -42,12 +42,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends BaseActivity implements OnClickListener {
 
 	JSONArray jsonArray;
 	EditText username = null;
 	EditText password = null;
-	TextView signup;
+	TextView signup,Reset;
 	private Button login;
 	HttpClient httpClient;
 	HttpPost httppost;
@@ -96,6 +96,22 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 				Intent openActivity = new Intent(
 						"com.se.uta_rides.SIGNUPACTIVITY");
+				startActivity(openActivity);
+				finish();
+			}
+		});
+		Reset = (TextView) findViewById(R.id.textView5);
+		SpannableString content1 = new SpannableString("ForgotPassword");
+		content1.setSpan(new UnderlineSpan(), 0, content1.length(), 0);
+		Reset.setText(content1);
+		//signup.setAutoLinkMask(Linkify.class);
+		Reset.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				Intent openActivity = new Intent("com.se.uta_rides.GENERATEPASSWORD");
 				startActivity(openActivity);
 				finish();
 			}
@@ -215,7 +231,19 @@ public class LoginActivity extends Activity implements OnClickListener {
 						"com.se.uta_rides.LAUNCHACTIVITY");
 				startActivity(openActivity);
 				finish();
-			} else {
+			} 
+			else if(result.equals("verify")){
+				//Toast.makeText(getApplicationContext(), "Please reset your password", 
+					//	Toast.LENGTH_SHORT).show();
+				System.out.println("inside verify!!!!!!!!!!!!!!");
+				Intent openActivity = new Intent("com.se.uta_rides.PASSWORDRESETTING");
+				System.out.println(username.getText().toString());
+				System.out.println(password.getText().toString());
+				openActivity.putExtra("email", username.getText().toString());
+				openActivity.putExtra("password", password.getText().toString());
+				startActivity(openActivity);
+				
+			}else {
 				Toast.makeText(getApplicationContext(), "Wrong Credentials",
 						Toast.LENGTH_SHORT).show();
 

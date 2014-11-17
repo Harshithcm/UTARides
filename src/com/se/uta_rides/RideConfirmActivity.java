@@ -22,7 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class RideConfirmActivity extends Activity implements OnClickListener{
+public class RideConfirmActivity extends BaseActivity implements OnClickListener{
 
 	String emailid_car1="";
 	String emailid_stu1="";

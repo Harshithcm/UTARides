@@ -17,7 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SelectedUserDetails extends Activity implements OnClickListener{
+public class SelectedUserDetails extends BaseActivity implements OnClickListener{
 
 	String passedName=null;
 	String passedEmail=null;

@@ -39,7 +39,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 /*LoadAvailableListActivity - Loads the list of available Car Owners*/
-public class LoadAvailableListActivity extends Activity {
+public class LoadAvailableListActivity extends BaseActivity {
 	JSONArray jsonArray;
 	ListView listView;
 	ListAdapter adapter;
