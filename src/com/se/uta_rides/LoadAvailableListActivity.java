@@ -178,12 +178,18 @@ public class LoadAvailableListActivity extends Activity {
 					map.put(START_TIME, startTime);
 					map.put(END_TIME, endTime);
 					arrayList.add(map);
+					System.out.println("after adding into map");
+					for(int k=0; k < arrayList.size(); k++){
+						System.out.println("Array List : "+arrayList.get(k));
+					}
+					
+					
 				}
 				/* Retrieve a List View to set the list of available Rides */
 				resultView = (ListView) findViewById(R.id.listAvailable);
 				ListAdapter adapter = new SimpleAdapter(
 						LoadAvailableListActivity.this, arrayList,
-						R.layout.activity_median, new String[] { NAME.toUpperCase(Locale.US) },
+						R.layout.activity_median, new String[] { NAME },
 						new int[] { R.id.textMedian });
 				resultView.setAdapter(adapter);
 				resultView.setOnItemClickListener(onListClick);
