@@ -109,6 +109,7 @@
     <string name="activityLaunch">Select your Preference</string>
     <string name="launchStudent">Book a Ride</string>
     <string name="launchCarOwner">Provide a Ride</string>
+    <string name="viewBookedRides">View Booked Rides</string>
 
     <!-- activity_add_user.xml -->
     <string name="activityAddUser">Add a User</string>

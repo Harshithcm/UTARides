@@ -11,10 +11,20 @@
         style="@style/NiceButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/launchCarOwner"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="85dp"
         android:text="@string/launchStudent" />
+
+    <Button
+        android:id="@+id/viewBookedRides"
+        style="@style/NiceButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/launchCarOwner"
+        android:layout_below="@+id/launchCarOwner"
+        android:layout_marginTop="56dp"
+        android:text="@string/viewBookedRides" />
 
     <Button
         android:id="@+id/launchCarOwner"
@@ -23,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/launchStudent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="56dp"
         android:text="@string/launchCarOwner" />
 
 </RelativeLayout>

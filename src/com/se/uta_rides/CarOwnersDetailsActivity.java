@@ -58,7 +58,7 @@ public class CarOwnersDetailsActivity extends BaseActivity implements OnClickLis
 		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.notifyButton:
-			//parse.sendNotification("akshatha@gmail.com");
+			
 		}
 	}
 }

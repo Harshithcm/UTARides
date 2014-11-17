@@ -143,6 +143,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ViewRideDetails" >
+           
+            <intent-filter>
+                <action android:name="com.se.uta_rides.VIEWRIDEDETAILS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SearchActivity"
             android:label="@string/activitySearch" >
             <intent-filter>
