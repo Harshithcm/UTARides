@@ -113,7 +113,7 @@ public class LoadAvailableListActivity extends Activity {
 			System.out.println("fullurl - " + fullUrl);
 			httpClient = new DefaultHttpClient();
 			httppost = new HttpPost(
-					"http://omega.uta.edu/~sxk7162/get_carowner_details1.php?"
+					"http://omega.uta.edu/~sxk7162/get_carowner_details.php?"
 							+ params);
 			response = httpClient.execute(httppost);
 			System.out.println(response);
@@ -178,12 +178,6 @@ public class LoadAvailableListActivity extends Activity {
 					map.put(START_TIME, startTime);
 					map.put(END_TIME, endTime);
 					arrayList.add(map);
-					System.out.println("after adding into map");
-					for(int k=0; k < arrayList.size(); k++){
-						System.out.println("Array List : "+arrayList.get(k));
-					}
-					
-					
 				}
 				/* Retrieve a List View to set the list of available Rides */
 				resultView = (ListView) findViewById(R.id.listAvailable);
@@ -226,4 +220,5 @@ public class LoadAvailableListActivity extends Activity {
 			startActivity(i);
 		}
 	};
+
 }

@@ -42,84 +42,80 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity implements OnClickListener{
+public class LoginActivity extends Activity implements OnClickListener {
 
 	JSONArray jsonArray;
-	EditText  username=null;
-	EditText password=null;
+	EditText username = null;
+	EditText password = null;
 	TextView signup;
 	private Button login;
 	HttpClient httpClient;
 	HttpPost httppost;
 	HttpResponse response;
 	HttpEntity entity;
-	String status,result,uname,pasw,resp;
+	String status, result, uname, pasw, resp;
 	InputStream isr;
 	JSONArray jArray;
 	TextView txt_Error;
 	InputStream res = null;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		//signup = (TextView) findViewById(R.id.textView4);
-		//signup.setMovementMethod(LinkMovementMethod.getInstance());
+		// signup = (TextView) findViewById(R.id.textView4);
+		// signup.setMovementMethod(LinkMovementMethod.getInstance());
 		setContentView(R.layout.activity_log_in);
-		username = (EditText)findViewById(R.id.editText1);
-		password = (EditText)findViewById(R.id.editText2);
-		final String DEFAULT="N/A";
-		SharedPreferences sharedpreferences= getSharedPreferences("MyData",Context.MODE_PRIVATE);
-		String name = sharedpreferences.getString("name",DEFAULT);
-		String pass =  sharedpreferences.getString("pass",DEFAULT);
-		if(!name.equals(DEFAULT) && !pass.equals(DEFAULT)){
+		username = (EditText) findViewById(R.id.editText1);
+		password = (EditText) findViewById(R.id.editText2);
+		final String DEFAULT = "N/A";
+		SharedPreferences sharedpreferences = getSharedPreferences("MyData",
+				Context.MODE_PRIVATE);
+		String name = sharedpreferences.getString("name", DEFAULT);
+		String pass = sharedpreferences.getString("pass", DEFAULT);
+		if (!name.equals(DEFAULT) && !pass.equals(DEFAULT)) {
 
 			Intent openActivity = new Intent("com.se.uta_rides.LAUNCHACTIVITY");
 			startActivity(openActivity);
 			finish();
 		}
 
-		
-		login = (Button)findViewById(R.id.button1);
+		login = (Button) findViewById(R.id.button1);
 		login.setOnClickListener(this);
 
 		signup = (TextView) findViewById(R.id.textView4);
 		SpannableString content = new SpannableString("signup");
 		content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 		signup.setText(content);
-		//signup.setAutoLinkMask(Linkify.class);
+		// signup.setAutoLinkMask(Linkify.class);
 		signup.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				Intent openActivity = new Intent("com.se.uta_rides.SIGNUPACTIVITY");
+				Intent openActivity = new Intent(
+						"com.se.uta_rides.SIGNUPACTIVITY");
 				startActivity(openActivity);
 				finish();
 			}
 		});
 	}
 
-
 	@Override
 	public void onClick(View v) {
 
-
 		// TODO Auto-generated method stub
 		System.out.println("Entered OnClick");
-			uname = username.getText().toString();
-			pasw = password.getText().toString();
+		uname = username.getText().toString().trim();
+		pasw = password.getText().toString();
 
-			UserValidation validates = new UserValidation();
-			validates.execute(uname,pasw);
-		
+		UserValidation validates = new UserValidation();
+		validates.execute(uname, pasw);
 
+	}
 
-	}  
-
-	private class UserValidation extends AsyncTask<String,String,String>{
+	private class UserValidation extends AsyncTask<String, String, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
@@ -127,17 +123,22 @@ public class LoginActivity extends Activity implements OnClickListener{
 			String username = params[0];
 			String pasword = params[1];
 			// TODO Auto-generated method stub
-			try{
-				String params1 = "email='" + username +"'&&"+ "pas='" + pasword+"'";
+			try {
+				String params1 = "email='" + username.trim() + "'&&" + "pas='"
+						+ pasword + "'";
 				String fullUrl = "http://omega.uta.edu/verify_password_local.php?"
 						+ params1;
 				System.out.println("fullurl - " + fullUrl);
 				httpClient = new DefaultHttpClient();
-				/*httppost = new HttpPost(
-						"http://192.168.0.13/verify_password_local.php?" + params);*/
+				/*
+				 * httppost = new HttpPost(
+				 * "http://192.168.0.13/verify_password_local.php?" + params);
+				 */
 				httppost = new HttpPost(
-						"http://omega.uta.edu/~sxk7162/verify_password.php?" + params1);
-				//httppost = new HttpPost("http://omega.uta.edu/~sxk7162/db_mysql_o.php?");
+						"http://omega.uta.edu/~sxk7162/verify_password.php?"
+								+ params1);
+				// httppost = new
+				// HttpPost("http://omega.uta.edu/~sxk7162/db_mysql_o.php?");
 				System.out.println("httpPost is done");
 				response = httpClient.execute(httppost);
 				System.out.println(response);
@@ -146,9 +147,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 					isr = entity.getContent();
 					System.out.println("byte - " + isr.available());
 				}
-			}catch (UnsupportedEncodingException e) {
-				Log.e("log_tag",
-						" Error in UnsupportedEncodingException - " + e.toString());
+			} catch (UnsupportedEncodingException e) {
+				Log.e("log_tag", " Error in UnsupportedEncodingException - "
+						+ e.toString());
 			} catch (ClientProtocolException e) {
 				Log.e("log_tag",
 						" Error in ClientProtocolException - " + e.toString());
@@ -159,8 +160,8 @@ public class LoginActivity extends Activity implements OnClickListener{
 			}
 
 			try {
-				BufferedReader reader = new BufferedReader(new InputStreamReader(
-						isr, "iso-8859-1"), 8);
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(isr, "iso-8859-1"), 8);
 				StringBuilder sb = new StringBuilder();
 				String line = null;
 				while ((line = reader.readLine()) != null) {
@@ -184,9 +185,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 
 				JSONObject jsonObject = jsonArray.getJSONObject(0);
 				status = jsonObject.getString("status");
-				System.out.println("Printing the status!!!!!!!!!!!!"+status);
-
-
+				System.out.println("Printing the status!!!!!!!!!!!!" + status);
 
 			} catch (JSONException e) {
 				Log.e("Error", e.getMessage());
@@ -200,30 +199,29 @@ public class LoginActivity extends Activity implements OnClickListener{
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			System.out.println("Printing the result "+result);
-			if(result.equals("true"))
-			{    //&& (!username.equals("") && !password.equals(""))){
-				Toast.makeText(getApplicationContext(), "Logging in...", 
+			System.out.println("Printing the result " + result);
+			if (result.equals("true")) { // && (!username.equals("") &&
+											// !password.equals(""))){
+				Toast.makeText(getApplicationContext(), "Logging in...",
 						Toast.LENGTH_SHORT).show();
 				System.out.println("Exeucuting shared preferences");
-				SharedPreferences sharedpreferences= getSharedPreferences("MyData",Context.MODE_PRIVATE);			      
+				SharedPreferences sharedpreferences = getSharedPreferences(
+						"MyData", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedpreferences.edit();
-				editor.putString("name", username.getText().toString());
+				editor.putString("name", username.getText().toString().trim());
 				editor.putString("pass", password.getText().toString());
 				editor.commit();
-				Intent openActivity = new Intent("com.se.uta_rides.LAUNCHACTIVITY");
+				Intent openActivity = new Intent(
+						"com.se.uta_rides.LAUNCHACTIVITY");
 				startActivity(openActivity);
 				finish();
-			}	
-			else{
+			} else {
 				Toast.makeText(getApplicationContext(), "Wrong Credentials",
 						Toast.LENGTH_SHORT).show();
 
 			}
 
 		}
-
-
 
 	}
 
