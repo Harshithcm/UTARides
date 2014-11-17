@@ -126,8 +126,20 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		uname = username.getText().toString().trim();
 		pasw = password.getText().toString();
 
-		UserValidation validates = new UserValidation();
-		validates.execute(uname, pasw);
+		if(uname.isEmpty()){
+			Toast.makeText(getApplicationContext(),
+					"Enter Username!",
+					Toast.LENGTH_SHORT).show();
+		}
+		else if(pasw.isEmpty()){
+			Toast.makeText(getApplicationContext(),
+					"Enter the password!",
+					Toast.LENGTH_SHORT).show();
+		}else{
+
+			UserValidation validates = new UserValidation();
+			validates.execute(uname, pasw);
+		}
 
 	}
 
@@ -217,7 +229,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			super.onPostExecute(result);
 			System.out.println("Printing the result " + result);
 			if (result.equals("true")) { // && (!username.equals("") &&
-											// !password.equals(""))){
+				// !password.equals(""))){
 				Toast.makeText(getApplicationContext(), "Logging in...",
 						Toast.LENGTH_SHORT).show();
 				System.out.println("Exeucuting shared preferences");
@@ -234,7 +246,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			} 
 			else if(result.equals("verify")){
 				//Toast.makeText(getApplicationContext(), "Please reset your password", 
-					//	Toast.LENGTH_SHORT).show();
+				//	Toast.LENGTH_SHORT).show();
 				System.out.println("inside verify!!!!!!!!!!!!!!");
 				Intent openActivity = new Intent("com.se.uta_rides.PASSWORDRESETTING");
 				System.out.println(username.getText().toString());
@@ -242,7 +254,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				openActivity.putExtra("email", username.getText().toString());
 				openActivity.putExtra("password", password.getText().toString());
 				startActivity(openActivity);
-				
+
 			}else {
 				Toast.makeText(getApplicationContext(), "Wrong Credentials",
 						Toast.LENGTH_SHORT).show();

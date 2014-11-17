@@ -62,6 +62,12 @@ public class GeneratePassword extends BaseActivity{
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	email = Email.getText().toString();
+            	phoneNo = txtphoneNo.getText().toString();
+            	if(phoneNo.isEmpty()){
+            		Toast.makeText(getApplicationContext(),
+    						"Please enter phone number!",
+    						Toast.LENGTH_SHORT).show();
+            	}else{
             	System.out.println("email:"+email);
             	System.out.println("before send");
             	sendSMSMessage();
@@ -71,12 +77,13 @@ public class GeneratePassword extends BaseActivity{
     			enter.execute(email, password, flag);
     			Intent openActivity = new Intent("com.se.uta_rides.LOGINACTIVITY");
 				startActivity(openActivity);
+            	}
             }});
     }
 	protected void sendSMSMessage() {
 	      Log.i("Send SMS", "");
 	      
-	      phoneNo = txtphoneNo.getText().toString();
+	      
 	      message = "New password is " +password;//txtMessage.getText().toString();
 
 	      try {

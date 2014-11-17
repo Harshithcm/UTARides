@@ -54,8 +54,15 @@ public class PasswordResetting extends BaseActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		String password = Npass.getText().toString();
 		String confirmPassword = Cpass.getText().toString();
-		
-		if(generatedpass.equals(password)){
+		if(password.isEmpty()){
+		Toast.makeText(getApplicationContext(),
+				"Please enter password!",
+				Toast.LENGTH_SHORT).show();
+		}else if(confirmPassword.isEmpty()){
+			Toast.makeText(getApplicationContext(),
+					"Please enter confirm password!",
+					Toast.LENGTH_SHORT).show();
+		}else if(generatedpass.equals(password)){
 		String flag="true";
 		EnterValues enter = new EnterValues();
 		enter.execute(email,confirmPassword,flag);

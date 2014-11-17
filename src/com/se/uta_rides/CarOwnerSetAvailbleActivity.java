@@ -136,81 +136,7 @@ public class CarOwnerSetAvailbleActivity extends BaseActivity implements
 
 			break;
 
-		case R.id.buttonSave:
-			if (selectedNumberOfSeats.isEmpty()) {
-				Toast.makeText(getApplicationContext(),
-						"Enter values in number of seats field",
-						Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(
-						CarOwnerSetAvailbleActivity.this,
-						"You selected : "
-								+ "\n"
-								+ "Day : "
-								+ String.valueOf(dayDropDownList
-										.getSelectedItem()) + "\n"
-								+ "Location : "
-						// +
-						// String.valueOf(favSpotDropDownList.getSelectedItem())
-						, Toast.LENGTH_SHORT).show();
-
-				SharedPreferences userDetails = getSharedPreferences("MyData",
-						Context.MODE_PRIVATE);
-				String userName = userDetails.getString("name", "null");
-
-				new SendData().execute(userName,
-						String.valueOf(dayDropDownList.getSelectedItem()),
-						selectedStartTime, selectedEndTime,
-						selectedNumberOfSeats, selectedLocationLatitude,
-						selectedLocationLongitude, selectedLocationAddress);
-			}
-			break;
-
-		case R.id.buttonUpdate:
-			System.out.println("update");
-			if (selectedNumberOfSeats.isEmpty()) {
-				Toast.makeText(getApplicationContext(),
-						"Enter values in number of seats field",
-						Toast.LENGTH_SHORT).show();
-			} else {
-
-				UpdateData update = new UpdateData();
-
-				SharedPreferences userDetails = getSharedPreferences("MyData",
-						Context.MODE_PRIVATE);
-				String userName = userDetails.getString("name", "null");
-
-				AsyncTask<String, String, String> checkTimings = update
-						.execute(userName, String.valueOf(dayDropDownList
-								.getSelectedItem()), selectedStartTime,
-								selectedEndTime, selectedNumberOfSeats,
-								selectedLocationLatitude,
-								selectedLocationLongitude,
-								selectedLocationAddress);
-				try {
-					if (checkTimings.get() != "") {
-						System.out.println("timings not set set it first");
-						Toast.makeText(CarOwnerSetAvailbleActivity.this,
-								"Please save the timings before update", 2000)
-								.show();
-					} else {
-						Toast.makeText(
-								CarOwnerSetAvailbleActivity.this,
-								"You selected : "
-										+ "\n"
-										+ "Day : "
-										+ String.valueOf(dayDropDownList
-												.getSelectedItem()) + "\n"
-										+ "Location : "
-								// + String.valueOf(favSpotDropDownList
-								// .getSelectedItem())
-								, Toast.LENGTH_SHORT).show();
-					}
-				} catch (InterruptedException | ExecutionException e) {
-					e.printStackTrace();
-				}
-			}
-			break;
+		
 
 		case R.id.buttonStartTime:
 			calendar = Calendar.getInstance();
@@ -258,6 +184,112 @@ public class CarOwnerSetAvailbleActivity extends BaseActivity implements
 
 			timePick.show();
 
+			break;
+		case R.id.buttonSave:
+			if(selectedStartTime.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Enter values in Start time field!",
+						Toast.LENGTH_SHORT).show();
+			}
+			else if(selectedLocationAddress.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please select location from map!",
+						Toast.LENGTH_SHORT).show();
+			}
+			else if(selectedEndTime.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please select end time!",
+						Toast.LENGTH_SHORT).show();
+			}
+			else if (selectedNumberOfSeats.isEmpty()) {
+				Toast.makeText(getApplicationContext(),
+						"Enter values in number of seats field",
+						Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(
+						CarOwnerSetAvailbleActivity.this,
+						"You selected : "
+								+ "\n"
+								+ "Day : "
+								+ String.valueOf(dayDropDownList
+										.getSelectedItem()) + "\n"
+								+ "Location : "
+						// +
+						// String.valueOf(favSpotDropDownList.getSelectedItem())
+						, Toast.LENGTH_SHORT).show();
+
+				SharedPreferences userDetails = getSharedPreferences("MyData",
+						Context.MODE_PRIVATE);
+				String userName = userDetails.getString("name", "null");
+
+				new SendData().execute(userName,
+						String.valueOf(dayDropDownList.getSelectedItem()),
+						selectedStartTime, selectedEndTime,
+						selectedNumberOfSeats, selectedLocationLatitude,
+						selectedLocationLongitude, selectedLocationAddress);
+			}
+			break;
+			
+		case R.id.buttonUpdate:
+			
+			System.out.println("update");
+			if(selectedStartTime.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please select Start time!",
+						Toast.LENGTH_SHORT).show();
+			}
+			else if(selectedLocationAddress.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please select location from map!",
+						Toast.LENGTH_SHORT).show();
+			}
+			else if(selectedEndTime.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please select end time!",
+						Toast.LENGTH_SHORT).show();
+			}
+			else if (selectedNumberOfSeats.isEmpty()) {
+				Toast.makeText(getApplicationContext(),
+						"Enter values in number of seats field!",
+						Toast.LENGTH_SHORT).show();
+			} else {
+
+				UpdateData update = new UpdateData();
+
+				SharedPreferences userDetails = getSharedPreferences("MyData",
+						Context.MODE_PRIVATE);
+				String userName = userDetails.getString("name", "null");
+
+				AsyncTask<String, String, String> checkTimings = update
+						.execute(userName, String.valueOf(dayDropDownList
+								.getSelectedItem()), selectedStartTime,
+								selectedEndTime, selectedNumberOfSeats,
+								selectedLocationLatitude,
+								selectedLocationLongitude,
+								selectedLocationAddress);
+				try {
+					if (checkTimings.get() != "") {
+						System.out.println("timings not set set it first");
+						Toast.makeText(CarOwnerSetAvailbleActivity.this,
+								"Please save the timings before update", 2000)
+								.show();
+					} else {
+						Toast.makeText(
+								CarOwnerSetAvailbleActivity.this,
+								"You selected : "
+										+ "\n"
+										+ "Day : "
+										+ String.valueOf(dayDropDownList
+												.getSelectedItem()) + "\n"
+										+ "Location : "
+								// + String.valueOf(favSpotDropDownList
+								// .getSelectedItem())
+								, Toast.LENGTH_SHORT).show();
+					}
+				} catch (InterruptedException | ExecutionException e) {
+					e.printStackTrace();
+				}
+			}
 			break;
 		}
 	}

@@ -197,6 +197,26 @@ public class SearchActivity extends BaseActivity implements OnClickListener,
 			String numberOfSeatsRequired = selectedSeatsRequired;
 			DateFormat formatter;
 			Date selDate = null;
+			
+			if(selectedSeatsRequired.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please enter Number of seats!",
+						Toast.LENGTH_SHORT).show();
+			}else if(selectedLocationAddress.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please enter location!",
+						Toast.LENGTH_SHORT).show();
+			}else if(selectedDate.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please enter date!",
+						Toast.LENGTH_SHORT).show();
+			}else if(selectedSeatsRequired.isEmpty()){
+				Toast.makeText(getApplicationContext(),
+						"Please enter time!",
+						Toast.LENGTH_SHORT).show();
+			}else{
+			
+			
 			formatter = new SimpleDateFormat("yyyy-MM-dd");
 			try {
 				selDate = formatter.parse(selectedDate);
@@ -226,6 +246,7 @@ public class SearchActivity extends BaseActivity implements OnClickListener,
 				i.putExtra("locationSearch", locationSearch);
 				i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
 				startActivity(i);
+			}
 			}
 			break;
 		}
