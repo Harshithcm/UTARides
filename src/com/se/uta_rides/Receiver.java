@@ -38,6 +38,8 @@ public class Receiver extends ParsePushBroadcastReceiver {
 		String loc = "";
 		String concatenatedString = "";
 		String numberOfSeatsRequired = "";
+		String latitudeSearch="";
+		String longitudeSearch="";
 	    try {
 	      JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
 	      //JSONObject json1 = new JSONObject(intent.getExtras().getString("com.parse.Target"));
@@ -48,7 +50,10 @@ public class Receiver extends ParsePushBroadcastReceiver {
 	      time = json.getString("time");
 	      date = json.getString("date");
 	      loc = json.getString("location");
+	      latitudeSearch = json.getString("latitudeSearch");
+	      longitudeSearch = json.getString("longitudeSearch");
 	      numberOfSeatsRequired=json.getString("numberofseatsrequired");
+	      
 	      System.out.println("receiver class params main"+time+date+loc+numberOfSeatsRequired);
 	      System.out.println("notificationText = "+alert);
 	      System.out.println("email id = "+emailid_stu);
@@ -69,6 +74,8 @@ public class Receiver extends ParsePushBroadcastReceiver {
 	    i.putExtra("f_name", concatenatedString);
 	    i.putExtra("loc", loc);
 	    i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
+	    i.putExtra("latitudeSearch", latitudeSearch);
+	    i.putExtra("longitudeSearch", longitudeSearch);
 	    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	    System.out.println("receiver class params request"+time+date+loc+numberOfSeatsRequired);
 	    context.startActivity(i);
@@ -80,6 +87,8 @@ public class Receiver extends ParsePushBroadcastReceiver {
 		    i.putExtra("dateSearch", date);
 		    i.putExtra("locationSearch", loc);
 		    i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
+		    i.putExtra("latitudeSearch", latitudeSearch);
+		    i.putExtra("longitudeSearch",longitudeSearch);
 		    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		    context.startActivity(i);
 	    }

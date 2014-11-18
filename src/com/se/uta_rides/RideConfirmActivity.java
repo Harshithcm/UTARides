@@ -43,6 +43,8 @@ public class RideConfirmActivity extends BaseActivity implements OnClickListener
 	private TextView date=null;
 	private TextView time=null;
 	private TextView location=null;
+	String latitudeSearch="";
+	String longitudeSearch="";
 	
 	ParseApplication parse = new ParseApplication();
 
@@ -58,6 +60,8 @@ public class RideConfirmActivity extends BaseActivity implements OnClickListener
 		time1 = getIntent().getStringExtra("time");
 		location1 = getIntent().getStringExtra("loc");
 		numberOfSeatsRequired=getIntent().getStringExtra("numberOfSeatsRequired");
+		latitudeSearch=getIntent().getStringExtra("latitudeSearch");
+		longitudeSearch=getIntent().getStringExtra("longitudeSearch");
 		
 		name=(TextView)findViewById(R.id.name);
 		date=(TextView)findViewById(R.id.date);
@@ -98,7 +102,7 @@ public class RideConfirmActivity extends BaseActivity implements OnClickListener
 			break;
 			
 		case R.id.rejectButton:
-			parse.sendNotificationtoStudent(emailid_stu1,emailid_car1,date1,time1,location1,numberOfSeatsRequired);
+			parse.sendNotificationtoStudent(emailid_stu1,emailid_car1,date1,time1,location1,numberOfSeatsRequired,latitudeSearch,longitudeSearch);
 			break;
 			
 		}
@@ -115,19 +119,20 @@ public class RideConfirmActivity extends BaseActivity implements OnClickListener
 			String date = params[2];
 			String time = params[3];
 			String location = params[4];
-			String encodedLocationSearch = "";
-			
+
+			String encodedLoc = "";
 			try {
-				encodedLocationSearch = URLEncoder.encode(encodedLocationSearch, "UTF-8")
-						.replace("+", "%20");
-			} catch (UnsupportedEncodingException e) {
-				Log.e("LoadAvailableListActivity - UnsupportedEncodingException",
-						e.toString());
+				encodedLoc = URLEncoder.encode(location, "UTF-8").replace(
+						"+", "%20");
+			} catch (UnsupportedEncodingException e1) {
+				
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			
+
 			try{
 				String params1 = "s_email='" + emailid_stu + "'&&co_email='" + emailid_car
-						+ "'&&rdate='" + date + "'&&rtime='" + time +"'&&rloc='" + location
+						+ "'&&rdate='" + date + "'&&rtime='" + time +"'&&rloc='" + encodedLoc
 						+ "'&&seats="+numberOfSeatsRequired;
 				String fullUrl = "http://omega.uta.edu/~sxk7162/update_ride_details.php?"
 						+ params1;
