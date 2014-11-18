@@ -3,6 +3,7 @@ package com.se.uta_rides;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -114,6 +115,16 @@ public class RideConfirmActivity extends BaseActivity implements OnClickListener
 			String date = params[2];
 			String time = params[3];
 			String location = params[4];
+			String encodedLocationSearch = "";
+			
+			try {
+				encodedLocationSearch = URLEncoder.encode(encodedLocationSearch, "UTF-8")
+						.replace("+", "%20");
+			} catch (UnsupportedEncodingException e) {
+				Log.e("LoadAvailableListActivity - UnsupportedEncodingException",
+						e.toString());
+			}
+			
 			try{
 				String params1 = "s_email='" + emailid_stu + "'&&co_email='" + emailid_car
 						+ "'&&rdate='" + date + "'&&rtime='" + time +"'&&rloc='" + location
