@@ -60,8 +60,6 @@ public class ViewRideDetails extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-
 		final String DEFAULT = "N/A";
 		SharedPreferences sharedpreferences = getSharedPreferences("MyData",
 				Context.MODE_PRIVATE);
@@ -71,16 +69,15 @@ public class ViewRideDetails extends Activity {
 		setContentView(R.layout.activity_booked_rides);
 		resultView = (ListView) findViewById(R.id.bookedList);
 
-//		carOwnerName = (TextView) findViewById(R.id.carOwnerName);
-//		rideTakerName = (TextView) findViewById(R.id.rideTakerName);
-//		numberOfSeats = (TextView) findViewById(R.id.numberOfSeats);
-//		date = (TextView) findViewById(R.id.date);
-//		time = (TextView) findViewById(R.id.time);
-//		location = (TextView) findViewById(R.id.location);
+		// carOwnerName = (TextView) findViewById(R.id.carOwnerName);
+		// rideTakerName = (TextView) findViewById(R.id.rideTakerName);
+		// numberOfSeats = (TextView) findViewById(R.id.numberOfSeats);
+		// date = (TextView) findViewById(R.id.date);
+		// time = (TextView) findViewById(R.id.time);
+		// location = (TextView) findViewById(R.id.location);
 		arrayList = new ArrayList<HashMap<String, String>>();
 		ViewDetails viewData = new ViewDetails();
 		viewData.execute(emailId);
-
 	}
 
 	private class ViewDetails extends
@@ -89,7 +86,6 @@ public class ViewRideDetails extends Activity {
 		@Override
 		protected ArrayList<HashMap<String, String>> doInBackground(
 				String... params) {
-			// TODO Auto-generated method stub
 			try {
 				String email = params[0];
 
@@ -109,15 +105,18 @@ public class ViewRideDetails extends Activity {
 					System.out.println("byte - " + isr.available());
 				}
 			} catch (UnsupportedEncodingException e) {
-				Log.e("log_tag", " Error in UnsupportedEncodingException - "
-						+ e.toString());
+				Log.e("ViewRideDetails - ",
+						" Error in UnsupportedEncodingException - "
+								+ e.toString());
 			} catch (ClientProtocolException e) {
-				Log.e("log_tag",
+				Log.e("ViewRideDetails - ",
 						" Error in ClientProtocolException - " + e.toString());
 			} catch (IOException e) {
-				Log.e("log_tag", " Error in IOException - " + e.toString());
+				Log.e("ViewRideDetails - ",
+						" Error in IOException - " + e.toString());
 			} catch (Exception e) {
-				Log.e("log_tag", " Error in Connection" + e.toString());
+				Log.e("ViewRideDetails - ",
+						" Error in Connection" + e.toString());
 			}
 
 			try {
@@ -135,63 +134,82 @@ public class ViewRideDetails extends Activity {
 			} catch (Exception e) {
 				Log.e("ViewRideDetails",
 						"Error converting result " + e.toString());
+				// Toast.makeText(getBaseContext(), "No Rides Available",
+				// Toast.LENGTH_LONG).show();
 			}
 
 			System.out.println("ViewRideDetails - " + result);
 
-			if (result != null) {
-				try {
-					jsonArray = new JSONArray(result);
-				} catch (JSONException e) {
-					Log.e("log_tag", "Error parsing data " + e.toString());
-				}
-				try {
-					for (int i = 0; i < jsonArray.length(); i++) {
-						JSONObject jsonObject = jsonArray.getJSONObject(i);
-						System.out.println("reading from json file");
-						carOwnerEmail = jsonObject.getString(rideGivenBy);
-						rideTakerEmail = jsonObject.getString(rideGivenTo);
-						rideDate = jsonObject.getString(rideGivenDate);
-						rideTime = jsonObject.getString(rideGivenTime);
-						rideLoc = jsonObject.getString(rideLocation);
-						seatsBooked = jsonObject.getString(numberOfSeatsFilled);
-						HashMap<String, String> map = new HashMap<String, String>();
-						
-						String carOwnerEmail1="Ride Provider : "+carOwnerEmail;
-						String rideTakerEmail1 = "Ride Receiver : "+rideTakerEmail;
-						String rideDate1 = "Ride Date : "+rideDate;
-						String rideTime1 = "Ride Time : "+rideTime;
-						String rideLoc1 = "Ride Location : "+rideLoc;
-						String seatsBooked1 = "Seats Booked : "+seatsBooked;
-
-						System.out.println("Inserting it into hash map");
-
-						map.put(rideGivenBy, carOwnerEmail1);
-						map.put(rideGivenTo, rideTakerEmail1);
-						map.put(rideGivenDate, rideDate1);
-						map.put(rideGivenTime, rideTime1);
-						map.put(rideLocation, rideLoc1);
-						map.put(numberOfSeatsFilled, seatsBooked1);
-						System.out.println("inserted into map");
-						for (String key : map.keySet()) {
-							System.out.println("Key : " + key + "Value : "
-									+ map.get(key));
-						}
-						arrayList.add(map);
-						System.out.println("after adding into map");
-						for (int k = 0; k < arrayList.size(); k++) {
-							System.out.println("Array List : "
-									+ arrayList.get(k));
-						}
+			try {
+				if (result != null) {
+					try {
+						jsonArray = new JSONArray(result);
+					} catch (JSONException | NullPointerException e) {
+						Log.e("ViewRideDetails - ",
+								"Error parsing data " + e.toString());
+						// Toast.makeText(getBaseContext(),
+						// "No Rides Available",
+						// Toast.LENGTH_LONG).show();
 					}
+					try {
+						for (int i = 0; i < jsonArray.length(); i++) {
+							JSONObject jsonObject = jsonArray.getJSONObject(i);
+							System.out.println("reading from json file");
+							carOwnerEmail = jsonObject.getString(rideGivenBy);
+							rideTakerEmail = jsonObject.getString(rideGivenTo);
+							rideDate = jsonObject.getString(rideGivenDate);
+							rideTime = jsonObject.getString(rideGivenTime);
+							rideLoc = jsonObject.getString(rideLocation);
+							seatsBooked = jsonObject
+									.getString(numberOfSeatsFilled);
+							HashMap<String, String> map = new HashMap<String, String>();
 
-				} catch (JSONException e) {
-					Log.e("LoadAvailableListActivity - Error", e.getMessage());
-					e.printStackTrace();
+							String carOwnerEmail1 = "Ride Provider : "
+									+ carOwnerEmail;
+							String rideTakerEmail1 = "Ride Receiver : "
+									+ rideTakerEmail;
+							String rideDate1 = "Ride Date : " + rideDate;
+							String rideTime1 = "Ride Time : " + rideTime;
+							String rideLoc1 = "Ride Location : " + rideLoc;
+							String seatsBooked1 = "Seats Booked : "
+									+ seatsBooked;
+
+							System.out.println("Inserting it into hash map");
+
+							map.put(rideGivenBy, carOwnerEmail1);
+							map.put(rideGivenTo, rideTakerEmail1);
+							map.put(rideGivenDate, rideDate1);
+							map.put(rideGivenTime, rideTime1);
+							map.put(rideLocation, rideLoc1);
+							map.put(numberOfSeatsFilled, seatsBooked1);
+							System.out.println("inserted into map");
+							for (String key : map.keySet()) {
+								System.out.println("Key : " + key + "Value : "
+										+ map.get(key));
+							}
+							arrayList.add(map);
+							System.out.println("after adding into map");
+							for (int k = 0; k < arrayList.size(); k++) {
+								System.out.println("Array List : "
+										+ arrayList.get(k));
+							}
+						}
+					} catch (JSONException | NullPointerException e) {
+						Log.e("ViewRideDetailsActivity - Error", e.getMessage());
+						e.printStackTrace();
+						// Toast.makeText(getBaseContext(),
+						// "No Rides Available",
+						// Toast.LENGTH_LONG).show();
+					}
+				} else if (result == null) {
+					Log.e("ViewRideDetailsActivity - ", "No rides");
+					// Toast.makeText(getBaseContext(), "No Rides Available",
+					// Toast.LENGTH_LONG).show();
 				}
-			} else if (result == null) {
-				Toast.makeText(getApplicationContext(), "No Rides Available",
-						Toast.LENGTH_LONG).show();
+			} catch (NullPointerException e) {
+				Log.e("ViewRideDetailsActivity - ", "No rides");
+				// Toast.makeText(getBaseContext(), "No Rides Available",
+				// Toast.LENGTH_LONG).show();
 			}
 			return arrayList;
 		}
@@ -201,22 +219,35 @@ public class ViewRideDetails extends Activity {
 
 			try {
 				System.out.println("Onpostexec");
-				for (int k = 0; k < result.size(); k++) {
-					System.out.println("Array List : " + result.get(k));
+				if (result.size() > 0) {
+					for (int k = 0; k < result.size(); k++) {
+						System.out.println("Array List : " + result.get(k));
+					}
+					// Retrieve a List View to set the list of available Rides
+					resultView = (ListView) findViewById(R.id.bookedList);
+					ListAdapter adapter = new SimpleAdapter(
+							ViewRideDetails.this, result,
+							R.layout.activity_view_rides, new String[] {
+									rideGivenBy, rideGivenTo, rideGivenDate,
+									rideGivenTime, rideLocation,
+									numberOfSeatsFilled }, new int[] {
+									R.id.carOwnerName, R.id.rideTakerName,
+									R.id.date, R.id.time, R.id.location,
+									R.id.numberOfSeats });
+					resultView.setAdapter(adapter);
+					System.out.println("after array display");
+				} else {
+					Toast.makeText(
+							getApplicationContext(),
+							"You have not booked any rides. Please press back to return to previous screen",
+							Toast.LENGTH_LONG).show();
 				}
-				// Retrieve a List View to set the list of available Rides
-				resultView = (ListView) findViewById(R.id.bookedList);
-				ListAdapter adapter = new SimpleAdapter(ViewRideDetails.this,
-						result, R.layout.activity_view_rides,
-						new String[] { rideGivenBy,rideGivenTo,rideGivenDate,rideGivenTime,rideLocation,numberOfSeatsFilled},
-						new int[] { R.id.carOwnerName,R.id.rideTakerName,R.id.date,R.id.time,R.id.location,R.id.numberOfSeats});
-				resultView.setAdapter(adapter);
 			} catch (Exception e) {
-				Toast.makeText(getApplicationContext(), "Hmmm!!!",
+				Toast.makeText(
+						getApplicationContext(),
+						"You have not booked any rides. Please press back to return to previous screen",
 						Toast.LENGTH_LONG).show();
 			}
 		}
-
 	}
-
 }
