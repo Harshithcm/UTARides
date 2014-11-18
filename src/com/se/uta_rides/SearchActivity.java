@@ -198,19 +198,19 @@ public class SearchActivity extends BaseActivity implements OnClickListener,
 			DateFormat formatter;
 			Date selDate = null;
 			
-			if(selectedSeatsRequired.isEmpty()){
+			if(numberOfSeatsRequired==null){
 				Toast.makeText(getApplicationContext(),
 						"Please enter Number of seats!",
 						Toast.LENGTH_SHORT).show();
-			}else if(selectedLocationAddress.isEmpty()){
+			}else if(locationSearch==null){
 				Toast.makeText(getApplicationContext(),
 						"Please enter location!",
 						Toast.LENGTH_SHORT).show();
-			}else if(selectedDate.isEmpty()){
+			}else if(dateSearch==null){
 				Toast.makeText(getApplicationContext(),
 						"Please enter date!",
 						Toast.LENGTH_SHORT).show();
-			}else if(selectedSeatsRequired.isEmpty()){
+			}else if(timeSearch==null){
 				Toast.makeText(getApplicationContext(),
 						"Please enter time!",
 						Toast.LENGTH_SHORT).show();
