@@ -18,8 +18,8 @@
     <string name ="phone_label">Phone number</string>
     
     <!-- activity_rsetpassword.xml -->
-    <string name = "Password">New passowrd</string>
-    <string name = "Confirm">Confirm passowrd</string>
+    <string name = "Password">New password</string>
+    <string name = "Confirm">Confirm password</string>
     <string name = "RESET">RESET</string>
     <!-- activity_carowner_set_available.xml -->
     <string name="activityCarOwnerSetAvailable">Please Set Your Preference</string>
