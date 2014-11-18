@@ -26,7 +26,7 @@ public class ParseApplication extends Application{
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 	
-	public void sendNotificationtoCarowner(String email,String date,String time,String loc,String emailid_stu,String numberofseatsrequired){
+	public void sendNotificationtoCarowner(String email,String date,String time,String loc,String emailid_stu,String numberofseatsrequired,String latitudeSearch,String longitudeSearch){
 		
 		ParseQuery pQuery = ParseInstallation.getQuery();
 		pQuery.whereEqualTo("User_id", email);
@@ -38,6 +38,8 @@ public class ParseApplication extends Application{
 			data.put("date", date);
 			data.put("location", loc);
 			data.put("numberofseatsrequired",numberofseatsrequired);
+			data.put("latitudeSearch",latitudeSearch);
+			data.put("longitudeSearch", longitudeSearch);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +52,7 @@ public class ParseApplication extends Application{
 		System.out.println(data.toString());
 	}
 	
-	public void sendNotificationtoStudent(String emailid_stu,String emailid_car,String date,String time,String loc,String numberofseatsrequired){
+	public void sendNotificationtoStudent(String emailid_stu,String emailid_car,String date,String time,String loc,String numberofseatsrequired,String latitudeSearch,String longitudeSearch){
 		ParseQuery pQuery = ParseInstallation.getQuery();
 		pQuery.whereEqualTo("User_id", emailid_stu);
 		System.out.println("query executed");
@@ -62,6 +64,8 @@ public class ParseApplication extends Application{
 			data.put("date", date);
 			data.put("location", loc);
 			data.put("numberofseatsrequired",numberofseatsrequired);
+			data.put("latitudeSearch",latitudeSearch);
+			data.put("longitudeSearch", longitudeSearch);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
