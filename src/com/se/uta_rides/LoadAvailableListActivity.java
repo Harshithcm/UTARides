@@ -216,7 +216,8 @@ public class LoadAvailableListActivity extends Activity {
 			i.putExtra("datesearch", dateSearch);
 			i.putExtra("timesearch", timeSearch);
 			i.putExtra("locsearch", locationSearch);
-			i.putExtra("numberofseatsrequired", numberOfSeatsRequired);
+			i.putExtra("latitudeSearch", latitudeSearch);
+			i.putExtra("longitudeSearch", longitudeSearch);
 			startActivity(i);
 		}
 	};

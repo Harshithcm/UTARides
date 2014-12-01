@@ -42,7 +42,7 @@ public class PasswordResetting extends BaseActivity implements OnClickListener {
 		Npass = (EditText) findViewById(R.id.newpassword);
 		Cpass = (EditText) findViewById(R.id.confirmpassword);
 		email = getIntent().getExtras().getString("email");
-	    generatedpass = getIntent().getExtras().getString("password");
+	    //generatedpass = getIntent().getExtras().getString("password");
 		
 		Button RButton = (Button) findViewById(R.id.Reset);
 
@@ -62,7 +62,7 @@ public class PasswordResetting extends BaseActivity implements OnClickListener {
 			Toast.makeText(getApplicationContext(),
 					"Please enter confirm password!",
 					Toast.LENGTH_SHORT).show();
-		}else if(generatedpass.equals(password)){
+		}else if(confirmPassword.equals(password)){
 		String flag="true";
 		EnterValues enter = new EnterValues();
 		enter.execute(email,confirmPassword,flag);

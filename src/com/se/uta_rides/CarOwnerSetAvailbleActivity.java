@@ -186,22 +186,24 @@ public class CarOwnerSetAvailbleActivity extends BaseActivity implements
 
 			break;
 		case R.id.buttonSave:
-			if(selectedStartTime.isEmpty()){
+			System.out.println("Entered button save");
+			System.out.println("selectedStartTime"+selectedStartTime);
+			if(selectedStartTime == null){
 				Toast.makeText(getApplicationContext(),
 						"Enter values in Start time field!",
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_SHORT).show();				
 			}
-			else if(selectedLocationAddress.isEmpty()){
+			else if(selectedLocationAddress== null){
 				Toast.makeText(getApplicationContext(),
 						"Please select location from map!",
 						Toast.LENGTH_SHORT).show();
 			}
-			else if(selectedEndTime.isEmpty()){
+			else if(selectedEndTime==null){
 				Toast.makeText(getApplicationContext(),
 						"Please select end time!",
 						Toast.LENGTH_SHORT).show();
 			}
-			else if (selectedNumberOfSeats.isEmpty()) {
+			else if (selectedNumberOfSeats==null) {
 				Toast.makeText(getApplicationContext(),
 						"Enter values in number of seats field",
 						Toast.LENGTH_SHORT).show();
