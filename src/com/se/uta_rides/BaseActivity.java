@@ -28,6 +28,14 @@ public class BaseActivity extends Activity{
 	            openSettings();
 	            return true;
 	    }
+	    else if(item.getItemId() == R.id.create_wishlist){
+	    		Intent openAct = new Intent("com.se.uta_rides.CREATEWISHLIST");
+	    		return true;
+	    }
+	    else if(item.getItemId()==R.id.view_requests){
+	    		Intent openA = new Intent("com.se.uta_rides.VIEWREQUESTS");
+	    		return true;
+	    }
 	    else
 	    	return super.onOptionsItemSelected(item);
 	}

@@ -1,46 +1,60 @@
 package com.se.uta_rides;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Activity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.HttpHostConnectException;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.View;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-/*SearchActivity - Allows users to Search for a list of Car Owner, within a specified time and date*/
-public class SearchActivity extends BaseActivity implements OnClickListener,
-OnItemSelectedListener {
+public class CreateWishlist extends BaseActivity implements OnClickListener{
+	
 	Button buttonSearch, buttonDate, buttonTime, buttonMap;
-	//	private Spinner favDestDropDownList;
 	EditText textDate, textTime, textSeatsRequired, textDestination;
+	String selectedDate, selectedTime, selectedLocation, selectedSeatsRequired,selectedNumberOfSeats;
+	String selectedLocationLatitude, selectedLocationLongitude,selectedLocationAddress;
+	String selectedStartTime, selectedEndTime;
+	private Spinner dayDropDownList, favSpotDropDownList;
 	Intent i;
 	Calendar calendar;
-	String selectedDate, selectedTime, selectedLocation, selectedSeatsRequired;
 	int mYear, mMonth, mDay, tHour, tMinute;
 	DatePickerDialog datePick;
 	TimePickerDialog timePick;
-	String selectedLocationLatitude, selectedLocationLongitude,selectedLocationAddress;
 
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_search);
+		setContentView(R.layout.activity_create_wishlist);
 
 		/* Retrieves the Date, Time and Search button */
 		buttonDate = (Button) findViewById(R.id.buttonDate);
@@ -48,17 +62,6 @@ OnItemSelectedListener {
 		buttonSearch = (Button) findViewById(R.id.buttonSearch);
 		buttonMap = (Button) findViewById(R.id.buttonMap);
 		textSeatsRequired = (EditText) findViewById(R.id.textSeatsRequired);
-		// favDestDropDownList = (Spinner)
-		// findViewById(R.id.favDestDropDownList);
-		//
-		// ArrayAdapter<CharSequence> favDestDropDownListAdapter = ArrayAdapter
-		// .createFromResource(this, R.array.favDestDropDownList,
-		// android.R.layout.simple_spinner_item);
-		// favDestDropDownListAdapter
-		// .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// favDestDropDownList.setAdapter(favDestDropDownListAdapter);
-		// favDestDropDownList.setOnItemSelectedListener(this);
-		System.out.println(9);
 
 		/* Retrieves the Date and Time text views */
 		textDate = (EditText) findViewById(R.id.textDate);
@@ -121,7 +124,7 @@ OnItemSelectedListener {
 		selectedSeatsRequired = textSeatsRequired.getText().toString();
 
 		switch (view.getId()) {
-		case R.id.buttonMap:
+		case R.id.buttonMap1:
 			try {
 				selectedLocation = textDestination.getText().toString();
 				if (selectedLocation != null && !selectedLocation.equals("")) {
@@ -140,7 +143,7 @@ OnItemSelectedListener {
 
 			break;
 
-		case R.id.buttonDate:
+		case R.id.buttonDate1:
 			calendar = Calendar.getInstance();
 			mYear = calendar.get(Calendar.YEAR);
 			mMonth = calendar.get(Calendar.MONTH);
@@ -165,7 +168,7 @@ OnItemSelectedListener {
 
 			break;
 
-		case R.id.buttonTime:
+		case R.id.buttonTime1:
 			calendar = Calendar.getInstance();
 			tHour = calendar.get(Calendar.HOUR_OF_DAY);
 			tMinute = calendar.get(Calendar.MINUTE);
@@ -187,7 +190,7 @@ OnItemSelectedListener {
 
 			break;
 
-		case R.id.buttonSearch:
+		case R.id.buttonSearch1:
 			String dateSearch = selectedDate;
 			String timeSearch = selectedTime;
 			String locationSearch = selectedLocationAddress;
@@ -232,7 +235,7 @@ OnItemSelectedListener {
 							.show();
 				} else {
 
-					System.out.println("Searching...... " + dateSearch + " "
+					/*System.out.println("Searching...... " + dateSearch + " "
 							+ timeSearch + " " + latitudeSearch + " "
 							+ longitudeSearch + " " + locationSearch + " "
 							+ numberOfSeatsRequired);
@@ -244,7 +247,18 @@ OnItemSelectedListener {
 					i.putExtra("longitudeSearch", longitudeSearch);
 					i.putExtra("locationSearch", locationSearch);
 					i.putExtra("numberOfSeatsRequired", numberOfSeatsRequired);
-					startActivity(i);
+					startActivity(i);*/
+					
+
+					SharedPreferences userDetails = getSharedPreferences("MyData",
+							Context.MODE_PRIVATE);
+					String userName = userDetails.getString("name", "null");
+					
+					new SendData().execute(userName,selectedTime,selectedDate,
+							selectedNumberOfSeats, selectedLocationLatitude,
+							selectedLocationLongitude, selectedLocationAddress);
+					
+					
 				}
 			}
 			break;
@@ -256,7 +270,6 @@ OnItemSelectedListener {
 		return selectedDate;
 	}
 
-	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long arg3) {
 		Toast.makeText(
@@ -268,7 +281,60 @@ OnItemSelectedListener {
 
 	}
 
-	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
+	}
+	
+	private class SendData extends AsyncTask<String, String, String> {
+		HttpClient httpClient;
+		HttpPost httpPost;
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+				String email = params[0];
+				String time = params[1];
+				String date = params[2];
+				String seats = params[3];
+				String latitude = params[4];
+				String longitude = params[5];
+				String loc = params[6];
+				String encodedLoc = URLEncoder.encode(loc, "UTF-8").replace(
+						"+", "%20");
+				String totimingsPHP = "email='" + email + "'&&" + "time='"
+						+ time + "'&&" + "date='" + date + "'&&"
+						+ "seats='" + seats + "'&&" + "loc='"
+						+ encodedLoc;
+				System.out.println(totimingsPHP);
+				httpClient = new DefaultHttpClient();
+				httpPost = new HttpPost(
+						"http://omega.uta.edu/~sxk7162/create_wishlist.php?"
+								+ totimingsPHP);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("wooooooooo hooo");
+
+			try {
+				HttpResponse httpResponse = httpClient.execute(httpPost);
+			} catch (UnsupportedEncodingException e) {
+				Log.e("CarOwnerSetAvailableActivity URL Encode - ",
+						e.toString());
+			} catch (IllegalArgumentException e) {
+				Log.e("CarOwnerSetAvailableActivity Illegal Args - ",
+						e.toString());
+			} catch (HttpResponseException e) {
+				Log.e("CarOwnerSetAvailableActivity Response - ", e.toString());
+			} catch (ClientProtocolException e) {
+				Log.e("CarOwnerSetAvailableActivity Protocol - ", e.toString());
+			} catch (HttpHostConnectException e) {
+				Log.e("CarOwnerSetAvailableActivity Connection - ",
+						e.toString());
+			} catch (IOException e) {
+				Log.e("CarOwnerSetAvailableActivity IO - ", e.toString());
+			}
+
+			return null;
+		}
 	}
 }
