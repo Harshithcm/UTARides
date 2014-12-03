@@ -1,16 +1,30 @@
 package com.se.uta_rides;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Activity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.HttpHostConnectException;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
@@ -25,9 +39,9 @@ import android.widget.Toast;
 
 /*SearchActivity - Allows users to Search for a list of Car Owner, within a specified time and date*/
 public class SearchActivity extends BaseActivity implements OnClickListener,
-OnItemSelectedListener {
-	Button buttonSearch, buttonDate, buttonTime, buttonMap;
-	//	private Spinner favDestDropDownList;
+		OnItemSelectedListener {
+	Button buttonSearch, buttonDate, buttonTime, buttonMap, buttonWishList;
+	// private Spinner favDestDropDownList;
 	EditText textDate, textTime, textSeatsRequired, textDestination;
 	Intent i;
 	Calendar calendar;
@@ -35,7 +49,8 @@ OnItemSelectedListener {
 	int mYear, mMonth, mDay, tHour, tMinute;
 	DatePickerDialog datePick;
 	TimePickerDialog timePick;
-	String selectedLocationLatitude, selectedLocationLongitude,selectedLocationAddress;
+	String selectedLocationLatitude, selectedLocationLongitude,
+			selectedLocationAddress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +62,7 @@ OnItemSelectedListener {
 		buttonTime = (Button) findViewById(R.id.buttonTime);
 		buttonSearch = (Button) findViewById(R.id.buttonSearch);
 		buttonMap = (Button) findViewById(R.id.buttonMap);
+		buttonWishList = (Button) findViewById(R.id.buttonWishList);
 		textSeatsRequired = (EditText) findViewById(R.id.textSeatsRequired);
 		// favDestDropDownList = (Spinner)
 		// findViewById(R.id.favDestDropDownList);
@@ -69,6 +85,7 @@ OnItemSelectedListener {
 		buttonTime.setOnClickListener(this);
 		buttonSearch.setOnClickListener(this);
 		buttonMap.setOnClickListener(this);
+		buttonWishList.setOnClickListener(this);
 	}
 
 	@Override
@@ -100,17 +117,18 @@ OnItemSelectedListener {
 					Toast.makeText(getApplicationContext(), returnLocation,
 							Toast.LENGTH_SHORT).show();
 					System.out.println("myreturn " + returnLocation);
-					String[] selectedLocationArray = returnLocation.split(":", 3); 
-					for(int z=0; z<selectedLocationArray.length;z++){
+					String[] selectedLocationArray = returnLocation.split(":",
+							3);
+					for (int z = 0; z < selectedLocationArray.length; z++) {
 						System.out.println(selectedLocationArray[z]);
 					}
 					selectedLocationLatitude = selectedLocationArray[0];
 					selectedLocationLongitude = selectedLocationArray[1];
-					selectedLocationAddress = selectedLocationArray[2];
-					System.out.println("Got these from Map "
-							+ "address " + selectedLocationAddress + "..."
-							+ "latitude" + selectedLocationLatitude + "..."
-							+ "longitude" + selectedLocationLongitude);
+					selectedLocationAddress = selectedLocationArray[2].replace("null", " ").trim();
+					System.out.println("Got these from Map " + "address "
+							+ selectedLocationAddress + "..." + "latitude"
+							+ selectedLocationLatitude + "..." + "longitude"
+							+ selectedLocationLongitude);
 				}
 			}
 		}
@@ -150,16 +168,16 @@ OnItemSelectedListener {
 			datePick = new DatePickerDialog(this,
 					new DatePickerDialog.OnDateSetListener() {
 
-				@Override
-				public void onDateSet(DatePicker view, int year,
-						int monthOfYear, int dayOfMonth) {
-					textDate.setText(dayOfMonth + "-"
-							+ (monthOfYear + 1) + "-" + year);
-					selectedDate = year + "-" + (monthOfYear + 1) + "-"
-							+ dayOfMonth;
+						@Override
+						public void onDateSet(DatePicker view, int year,
+								int monthOfYear, int dayOfMonth) {
+							textDate.setText(dayOfMonth + "-"
+									+ (monthOfYear + 1) + "-" + year);
+							selectedDate = year + "-" + (monthOfYear + 1) + "-"
+									+ dayOfMonth;
 
-				}
-			}, mYear, mMonth, mDay);
+						}
+					}, mYear, mMonth, mDay);
 
 			datePick.show();
 
@@ -174,14 +192,14 @@ OnItemSelectedListener {
 			timePick = new TimePickerDialog(this,
 					new TimePickerDialog.OnTimeSetListener() {
 
-				@Override
-				public void onTimeSet(TimePicker view, int hourOfDay,
-						int minute) {
-					textTime.setText(hourOfDay + ":" + minute);
+						@Override
+						public void onTimeSet(TimePicker view, int hourOfDay,
+								int minute) {
+							textTime.setText(hourOfDay + ":" + minute);
 
-					selectedTime = hourOfDay + ":" + minute;
-				}
-			}, tHour, tMinute, false);
+							selectedTime = hourOfDay + ":" + minute;
+						}
+					}, tHour, tMinute, false);
 
 			timePick.show();
 
@@ -197,26 +215,21 @@ OnItemSelectedListener {
 			DateFormat formatter;
 			Date selDate = null;
 
-			
-			if(numberOfSeatsRequired==null){
+			if (numberOfSeatsRequired == null) {
 
 				Toast.makeText(getApplicationContext(),
-						"Please enter Number of seats!",
-						Toast.LENGTH_SHORT).show();
-			}else if(locationSearch==null){
+						"Please enter Number of seats!", Toast.LENGTH_SHORT)
+						.show();
+			} else if (locationSearch == null) {
 				Toast.makeText(getApplicationContext(),
-						"Please enter location!",
+						"Please enter location!", Toast.LENGTH_SHORT).show();
+			} else if (dateSearch == null) {
+				Toast.makeText(getApplicationContext(), "Please enter date!",
 						Toast.LENGTH_SHORT).show();
-			}else if(dateSearch==null){
-				Toast.makeText(getApplicationContext(),
-						"Please enter date!",
+			} else if (timeSearch == null) {
+				Toast.makeText(getApplicationContext(), "Please enter time!",
 						Toast.LENGTH_SHORT).show();
-			}else if(timeSearch==null){
-				Toast.makeText(getApplicationContext(),
-						"Please enter time!",
-						Toast.LENGTH_SHORT).show();
-			}else{
-
+			} else {
 
 				formatter = new SimpleDateFormat("yyyy-MM-dd");
 				try {
@@ -250,6 +263,17 @@ OnItemSelectedListener {
 				}
 			}
 			break;
+
+		case R.id.buttonWishList:
+			SharedPreferences userDetails = getSharedPreferences("MyData",
+					Context.MODE_PRIVATE);
+			String userName = userDetails.getString("name", "null");
+
+			new SendData().execute(userName, selectedTime, selectedDate,
+					selectedSeatsRequired, selectedLocationLatitude,
+					selectedLocationLongitude, selectedLocationAddress);
+
+			break;
 		}
 	}
 
@@ -265,12 +289,65 @@ OnItemSelectedListener {
 				parent.getContext(),
 				"Location selected : "
 						+ parent.getItemAtPosition(position).toString(),
-						Toast.LENGTH_SHORT).show();
+				Toast.LENGTH_SHORT).show();
 		selectedLocation = parent.getItemAtPosition(position).toString();
 
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
+	}
+
+	private class SendData extends AsyncTask<String, String, String> {
+		HttpClient httpClient;
+		HttpPost httpPost;
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+				String email = params[0];
+				String time = params[1];
+				String date = params[2];
+				String seats = params[3];
+				String latitude = params[4];
+				String longitude = params[5];
+				String loc = params[6];
+				String encodedLoc = URLEncoder.encode(loc, "UTF-8").replace(
+						"+", "%20");
+				String totimingsPHP = "email='" + email + "'&&" + "time='"
+						+ time + "'&&" + "date='" + date + "'&&" + "seats='"
+						+ seats + "'&&" + "loc='" + encodedLoc + "'";
+				System.out.println(totimingsPHP);
+				httpClient = new DefaultHttpClient();
+				httpPost = new HttpPost(
+						"http://omega.uta.edu/~sxk7162/create_wishlist.php?"
+								+ totimingsPHP);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("wooooooooo hooo");
+
+			try {
+				HttpResponse httpResponse = httpClient.execute(httpPost);
+			} catch (UnsupportedEncodingException e) {
+				Log.e("CarOwnerSetAvailableActivity URL Encode - ",
+						e.toString());
+			} catch (IllegalArgumentException e) {
+				Log.e("CarOwnerSetAvailableActivity Illegal Args - ",
+						e.toString());
+			} catch (HttpResponseException e) {
+				Log.e("CarOwnerSetAvailableActivity Response - ", e.toString());
+			} catch (ClientProtocolException e) {
+				Log.e("CarOwnerSetAvailableActivity Protocol - ", e.toString());
+			} catch (HttpHostConnectException e) {
+				Log.e("CarOwnerSetAvailableActivity Connection - ",
+						e.toString());
+			} catch (IOException e) {
+				Log.e("CarOwnerSetAvailableActivity IO - ", e.toString());
+			}
+
+			return null;
+		}
 	}
 }

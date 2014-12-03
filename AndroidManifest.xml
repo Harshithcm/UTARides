@@ -19,10 +19,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <!--
   IMPORTANT: Change "com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
     <permission
         android:name="com.se.uta_rides.permission.C2D_MESSAGE"
@@ -33,8 +33,6 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-    
-    
 
     <application
         android:name="com.se.uta_rides.ParseApplication"
@@ -67,7 +65,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity>
         -->
         <service android:name="com.parse.PushService" />
 
@@ -142,9 +140,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ViewRideDetails" >
-           
+        <activity android:name=".ViewRideDetails" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.VIEWRIDEDETAILS" />
 
@@ -210,6 +206,24 @@
             android:label="@string/activityCarOwnerSetAvailable" >
             <intent-filter>
                 <action android:name="com.se.uta_rides.maps.MAPSACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ViewRequestsActivity"
+            android:label="@string/view_request" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.VIEWREQUESTSACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SelectedCustomerDetails"
+            android:label="@string/view_request" >
+            <intent-filter>
+                <action android:name="com.se.uta_rides.SELECTEDCUSTOMERDETAILS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

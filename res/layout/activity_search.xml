@@ -5,17 +5,6 @@
     android:background="@drawable/blue_bg_grad"
     android:orientation="vertical" >
 
-    <!-- <Spinner
-        android:id="@+id/favDestDropDownList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp" />
- -->
     <Button
         android:id="@+id/buttonMap"
         style="@style/NiceButton"
@@ -52,26 +41,62 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
+    <Button
+        android:id="@+id/buttonWishList"
+        style="@style/NiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/buttonSearch"
+        android:layout_marginBottom="30dp"
+        android:text="@string/buttonWishList"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/textSeatsRequired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonSearch"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:ems="10"
+        android:hint="Enter Number of people taking ride"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/textDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textDate"
+        android:layout_below="@+id/textSeatsRequired"
+        android:ems="8"
+        android:hint="@string/textMapHint"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
     <EditText
         android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonTime"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/textDestination"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
         android:ems="8"
         android:hint="@string/textDateHint"
-        android:inputType="date" >
-    </EditText>
+        android:inputType="date" />
 
     <EditText
         android:id="@+id/textTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonSearch"
         android:layout_alignLeft="@+id/textDate"
-        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/textDate"
+        android:layout_marginTop="30dp"
         android:ems="8"
         android:hint="@string/textTimeHint" />
 
@@ -80,39 +105,10 @@
         style="@style/NiceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:text="@string/buttonSearch"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/textSeatsRequired"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonMap"
+        android:layout_below="@+id/buttonTime"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:ems="10"
-        android:hint="Enter Number of people taking ride"
-        android:inputType="number" >
-
-        <requestFocus />
-
-    </EditText>
-
-    <EditText
-        android:id="@+id/textDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonDate"
-        android:layout_alignLeft="@+id/textDate"
-        android:layout_marginBottom="30dp"
-        android:ems="8"
-        android:hint="@string/textMapHint"
-        android:inputType="text" >
-
-    </EditText>
+        android:text="@string/buttonSearch"
+        android:textSize="20sp" />
 
 </RelativeLayout>

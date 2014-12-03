@@ -3,9 +3,8 @@
 
     <string name="app_name">UTA RIDES</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">SIGN-OUT</string>
-    <string name="create_wishlist">CREATE-WISHLIST</string>
-    <string name="view_request">VIEW-REQUESTS</string>
+    <string name="action_settings">Sign Out</string>
+    <string name="view_request">View Requests</string>
     <string name="selecteduserDetails">Selected User Details</string>
 
     <color name="highlightedTextViewColor">#000088</color>
@@ -17,12 +16,13 @@
     <string name="slogan">We Make Booking Simple</string>
 
     <!-- activity_generatepassword.xml -->
-    <string name ="phone_label">Phone number</string>
-    
+    <string name="phone_label">Phone number</string>
+
     <!-- activity_rsetpassword.xml -->
-    <string name = "Password">New password</string>
-    <string name = "Confirm">Confirm password</string>
-    <string name = "RESET">RESET</string>
+    <string name="Password">New password</string>
+    <string name="Confirm">Confirm password</string>
+    <string name="RESET">RESET</string>
+    
     <!-- activity_carowner_set_available.xml -->
     <string name="activityCarOwnerSetAvailable">Please Set Your Preference</string>
     <string name="textStartTime">Choose Start Time</string>
@@ -62,6 +62,7 @@
     <string name="textTimeHint">Select Time</string>
     <string name="textMapHint">Select Destination</string>
     <string name="buttonSearch">Search Availability</string>
+    <string name="buttonWishList">Add to Wishlist</string>
     <string name="createRequest">Create Request</string>
     <string name="buttonconnectDB">Connect to DB</string>
 
