@@ -103,8 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnClickListener,
 		Toast.makeText(getApplicationContext(),
 				marker.getPosition().toString(), Toast.LENGTH_SHORT).show();
 		returnLocation = marker.getPosition().latitude + ":"
-				+ marker.getPosition().longitude + ":"
-				+ marker.getTitle();
+				+ marker.getPosition().longitude + ":" + marker.getTitle();
 		return false;
 	}
 
@@ -149,13 +148,14 @@ public class MapsActivity extends FragmentActivity implements OnClickListener,
 				System.out.println(latLng);
 
 				String addressText = String
-						.format("%s, %s, %s, %s, %s",
+						.format("%s, %s",
 								searchResult.getMaxAddressLineIndex() > 0 ? searchResult
-										.getAddressLine(1) : "", searchResult
-										.getCountryName(), searchResult
-										.getLocality(), searchResult
-										.getSubThoroughfare(), searchResult
-										.getThoroughfare());
+										.getAddressLine(0)
+										+ " "
+										+ searchResult.getAddressLine(1)
+										+ " "
+										+ searchResult.getAddressLine(2)
+										: "", searchResult.getCountryName());
 				System.out.println(addressText);
 
 				markerOptions = new MarkerOptions();
@@ -165,11 +165,11 @@ public class MapsActivity extends FragmentActivity implements OnClickListener,
 				googleMap.addMarker(markerOptions);
 				markerOptions.getPosition();
 
-//				if (i == 0) {
-//					googleMap.animateCamera(CameraUpdateFactory
-//							.newLatLng(latLng));
-//				}
-				
+				// if (i == 0) {
+				// googleMap.animateCamera(CameraUpdateFactory
+				// .newLatLng(latLng));
+				// }
+
 				googleMap.moveCamera(CameraUpdateFactory.zoomTo((float) 11.5));
 				googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 			}
